@@ -1,0 +1,2 @@
+[basic]
+lang = "zh-cn"
