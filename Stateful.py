@@ -1,7 +1,7 @@
 # @author:hyf
 import sqlite3, tomlkit
 
-# -----
+# ----- "Controller" part which can be separate into "Controller.py" if there are too many codes to handle the statements ------
 class UserCommand:
     def __init__(self, obj, command) -> None:
         self.focusMode = False
