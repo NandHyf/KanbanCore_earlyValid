@@ -1,9 +1,12 @@
 # @author:hyf
-class Command:
+import sqlite3, tomlkit
+
+# -----
+class UserCommand:
     def __init__(self, obj, command) -> None:
         self.focusMode = False
         self.obj = obj
-        self.Command = command
+        self.command = command
 
 
     def app_help():
@@ -68,14 +71,36 @@ class Trigger():
         pass
 
 
-class Board(Command):
+class Board(UserCommand):
     def __init__(self) -> None:
         super().__init__()
 
 
-class Event(Command):
+class Event(UserCommand):
     def __init__(self) -> None:
         super().__init__()
+
+
+# ----- functions binding command to model -----
+class WithToml(UserCommand):
+    def __init__(self, obj, command):
+        super().__init__(obj, command)
+
+
+class WithSqlite3(UserCommand):
+    def __init__(self, obj, command):
+        super().__init__(obj, command)
+    
+
+    def add_insert():
+        pass
+
+    def edit_update():
+        pass
+
+    def del_delete():
+        pass
+
 
 # class WithMd():
 

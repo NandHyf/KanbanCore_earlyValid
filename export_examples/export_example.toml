@@ -1,7 +1,7 @@
-[boardUid_1]
-boardUid.boardName = ''
-boardUid.description = ''
-# boardUid.creator = ''
+[boardName_boardUid1]
+boardUid.boardName = ""
+boardUid.description = ""
+# boardUid.creator = ""
 boardUid.createdTime = 2023-09-20T03:42:27Z
 
 boardUid.includedNum = 10
@@ -13,14 +13,14 @@ boardUid.archivedNum = 4
 
 
 # <eventName1>
-tag0.eventUid.name = ''
-tag0.eventUid.description = ''
-# tag0.eventUid.creator = ''
+tag0.eventUid.name = ""
+tag0.eventUid.description = ""
+# tag0.eventUid.creator = ""
 tag0.eventUid.createdTime = 2023-09-20T05:14:44Z
-tag0.eventUid.createdTag = ''
-# tag0.eventUid.ddlTime = ''
-# tag0.eventUid.alarmTime = ''
-tag0.eventUid.currentTag = ''
+tag0.eventUid.createdTag = ""
+# tag0.eventUid.ddlTime = ""
+# tag0.eventUid.alarmTime = ""
+tag0.eventUid.currentTag = ""
 # tag0.eventUid.stackingTime =
 # tag0.eventUid.workingTime = 
 tag0.eventUid.stuckedTime = 2023-09-20T05:16:23Z
@@ -29,14 +29,14 @@ tag0.eventUid.archivedTime = 2023-09-20T05:18:34Z
 
 
 # <evnetName2>
-tag1.eventUid.name = ''
-tag1.eventUid.description = ''
-# tag1.eventUid.creator = ''
+tag1.eventUid.name = ""
+tag1.eventUid.description = ""
+# tag1.eventUid.creator = ""
 tag1.eventUid.createdTime = 2023-09-20T05:19:44Z
-tag1.eventUid.createdTag = ''
-# tag1.eventUid.ddlTime = ''
-# tag1.eventUid.alarmTime = ''
-tag1.eventUid.currentTag = ''
+tag1.eventUid.createdTag = ""
+# tag1.eventUid.ddlTime = ""
+# tag1.eventUid.alarmTime = ""
+tag1.eventUid.currentTag = ""
 # tag1.eventUid.stackingTime =
 # tag1.eventUid.workingTime = 
 tag1.eventUid.stuckedTime = 2023-09-20T05:21:23Z
@@ -44,5 +44,5 @@ tag1.eventUid.doneTime = 2023-09-20T05:22:47Z
 tag1.eventUid.archivedTime = 2023-09-20T05:23:34Z
 
 
-[boardUid_2]
+[boardName_boardUid2]
 # etc...
