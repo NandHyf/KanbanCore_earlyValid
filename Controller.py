@@ -1,36 +1,67 @@
-# @author:nandHyf
-import Stateful
+# @author: nandHyf
 
-class Command:
-    def __init__(self, obj, command) -> None:
-        self.obj = obj
-        self.Command = command
-        self.focusMode = False
+import os
+# import Stateful
+import tomlkit, sqlite3
+import base64, datetime
 
 
-    def app_help():
+class client():
+    def __init__(self) -> None:
+        pass
+
+    def get_config():
+        pass
+
+    def excute():
+        pass
+
+    def start():
         pass
 
 
-    def app_exit():
-        exit()
+class User:
+    def __init__(self, command, obj0=[], tag0=None, content=[], tag1=None, obj1=None) -> None:
+        self.enableGlobalCommand = False
+        self.command = command
+        self.obj0 = obj0
+        self.tag0 = tag0
+        self.content = content
+        self.tag1 = tag1
+        self.obj1 = obj1
 
 
-    def app_export(self):
+    def command_help():
+        pass
+        # try:
+        #     with open("help.txt","r") as help:
+        #         helpText = help.read()
+        #         if helpText == '':
+        #             print("could not find correct'help.txt'")
+        #         else:
+        #           print(helpText)
+        # except:
+        #     print("could not find correct'help.txt'")
+
+
+    # def command_exit():
+    #     exit()
+
+
+    def command_export():
         pass
 
     
-    def list_board(self):
+    def list_board():
         pass
     
 
-    def list_event(self):
+    def list_event():
         pass
 
 
-    def select_board(self):
-        print(self.obj + "is selected")
-        self.focusMode = True
+    def select_board():
+        pass
 
 
     def Command_add():
@@ -65,16 +96,63 @@ class Command:
         pass
 
 
+class Board(User):
+    pass
+
+
+class Event(User):
+    pass
+
+
 class Trigger():
-    def __init__(self) -> None:
+    def __init__(self, T_obj) -> None:
+        self.T_obj = T_obj
+
+
+    def generate_uid(T_obj):
+        dt_now = str(datetime.datetime.now(datetime.timezone.utc))
+        genText = str.encode(T_obj + "_" + dt_now)
+        uid = base64.b64encode(genText)
+        
+        return(uid)
+
+
+# ----- functions binding command to model -----
+class WithTxt():
+    pass
+    
+class WithToml():
+    pass
+
+class WithSqlite3():
+    def __init__():
+        pass    
+
+    
+    def list_():
+        pass
+    
+    def add_insert():
         pass
 
+    def edit_update():
+        pass
 
-class Board(Command):
-    def __init__(self) -> None:
-        super().__init__()
+    def del_delete():
+        pass
+    
+    con = sqlite3.connect("KanbanCore.db")
+    cur = con.cursor
+
+# class WithMd():
 
 
-class Event(Command):
-    def __init__(self) -> None:
-        super().__init__()
+# class WithCsv():
+
+
+# class WithMongo():
+
+
+if __name__ == "__main__":
+    
+    command = input()

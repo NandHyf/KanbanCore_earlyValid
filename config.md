@@ -1,2 +1,0 @@
-[basic]
-lang = "zh-cn"

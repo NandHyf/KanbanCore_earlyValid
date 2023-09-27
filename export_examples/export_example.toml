@@ -13,35 +13,35 @@ boardUid.archivedNum = 4
 
 
 # <eventName1>
-tag0.eventUid.name = ""
-tag0.eventUid.description = ""
-# tag0.eventUid.creator = ""
-tag0.eventUid.createdTime = 2023-09-20T05:14:44Z
-tag0.eventUid.createdTag = ""
-# tag0.eventUid.ddlTime = ""
-# tag0.eventUid.alarmTime = ""
-tag0.eventUid.currentTag = ""
-# tag0.eventUid.stackingTime =
-# tag0.eventUid.workingTime = 
-tag0.eventUid.stuckedTime = 2023-09-20T05:16:23Z
-tag0.eventUid.doneTime = 2023-09-20T05:17:47Z
-tag0.eventUid.archivedTime = 2023-09-20T05:18:34Z
+class0.eventUid.name = ""
+class0.eventUid.description = ""
+# class0.eventUid.creator = ""
+class0.eventUid.createdTime = 2023-09-20T05:14:44Z
+class0.eventUid.createdClass = ""
+# class0.eventUid.ddlTime = ""
+# class0.eventUid.alarmTime = ""
+class0.eventUid.currentClass = ""
+# class0.eventUid.stackingTime =
+# class0.eventUid.workingTime = 
+class0.eventUid.stuckedTime = 2023-09-20T05:16:23Z
+class0.eventUid.doneTime = 2023-09-20T05:17:47Z
+class0.eventUid.archivedTime = 2023-09-20T05:18:34Z
 
 
 # <evnetName2>
-tag1.eventUid.name = ""
-tag1.eventUid.description = ""
-# tag1.eventUid.creator = ""
-tag1.eventUid.createdTime = 2023-09-20T05:19:44Z
-tag1.eventUid.createdTag = ""
-# tag1.eventUid.ddlTime = ""
-# tag1.eventUid.alarmTime = ""
-tag1.eventUid.currentTag = ""
-# tag1.eventUid.stackingTime =
-# tag1.eventUid.workingTime = 
-tag1.eventUid.stuckedTime = 2023-09-20T05:21:23Z
-tag1.eventUid.doneTime = 2023-09-20T05:22:47Z
-tag1.eventUid.archivedTime = 2023-09-20T05:23:34Z
+class1.eventUid.name = ""
+class1.eventUid.description = ""
+# class1.eventUid.creator = ""
+class1.eventUid.createdTime = 2023-09-20T05:19:44Z
+class1.eventUid.createdClass = ""
+# class1.eventUid.ddlTime = ""
+# class1.eventUid.alarmTime = ""
+class1.eventUid.currentClass = ""
+# class1.eventUid.stackingTime =
+# class1.eventUid.workingTime = 
+class1.eventUid.stuckedTime = 2023-09-20T05:21:23Z
+class1.eventUid.doneTime = 2023-09-20T05:22:47Z
+class1.eventUid.archivedTime = 2023-09-20T05:23:34Z
 
 
 [boardName_boardUid2]

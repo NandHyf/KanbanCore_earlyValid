@@ -1,0 +1,9 @@
+# Choose between sqlite3/toml/md/csv/mongodb
+# However toml/md/csv/mongodb will not be supported  in v1.0
+defaultDB = "sqlite3"
+
+# >>>need some guidance here<<<
+EnableGlobalCommand = false
+
+# tree/expand
+listBoardStyle = "tree"
