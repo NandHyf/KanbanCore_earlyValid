@@ -1,6 +1,6 @@
 # @author: nandHyf
 
-import Stateful
+import Stateful, View
 
 
 class client():
@@ -19,4 +19,4 @@ class client():
 
 if __name__ == "__main__":
     
-    order = input()
+    app = input()
