@@ -10,7 +10,9 @@ class Client():
     def get_config():
         # T-B-C...
         configs = ['lang', 'listStyle']
+        # rl == 'r'eturn 'l'ist
         rl = Stateful.matchTomlKeys("config.toml", configs)
+        
         global lang, listStyle
         lang = rl[0]
         listStyle = rl[1]
@@ -20,22 +22,18 @@ class Client():
         print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
 
 
-    def excute():
-        pass
-
-
     def start():
-        # get config
+        # 1. get config
         Client.get_config()
 
         # test code
         Client.get_help()
 
 
-        # list board
+        # 2. list board
         # Command.list
 
-        # wait command input
+        # 3. wait command input
         command = input()
 
 

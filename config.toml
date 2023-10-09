@@ -17,6 +17,7 @@ path = "test.db"
 
 # ----- helps -----
 # 难道用asicⅡ然后根据系统语言转换?
+# 或者是单独的.toml/.txt 文本文件也行
 [command-help]
 en = """
 Help texts in en
