@@ -6,21 +6,18 @@ class Command():
     pass
 
 class Client():
-    def __init__(self) -> None:
-        pass
-
 
     def get_config():
-        doc = Stateful.getTomlDoc("config.toml")
-        
         # T-B-C...
-        global lang
-        lang = ""
+        configs = ['lang', 'listStyle']
+        rl = Stateful.matchTomlKeys("config.toml", configs)
+        global lang, listStyle
+        lang = rl[0]
+        listStyle = rl[1]
 
 
     def get_help():
-        t = Stateful.matchTomlKey("config.toml", "lang")
-        print(t)
+        print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
 
 
     def excute():
@@ -31,8 +28,9 @@ class Client():
         # get config
         Client.get_config()
 
-        # test aera
+        # test code
         Client.get_help()
+
 
         # list board
         # Command.list
