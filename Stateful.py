@@ -3,51 +3,48 @@ import os
 import base64, datetime
 import tomlkit, sqlite3
 
+# kw == Key Word
+# dt_now == date&&time in UTC
+def generate_uid(kw):
+    dt_now = str(datetime.datetime.now(datetime.timezone.utc))
+    genText = str.encode(kw + "_" + dt_now)
+    uid = base64.b64encode(genText)
+    
+    return(uid)
 
-class Trigger():
-    def __init__(self, T_obj) -> None:
-        self.T_obj = T_obj
-
-    def generate_uid(T_obj):
-        dt_now = str(datetime.datetime.now(datetime.timezone.utc))
-        genText = str.encode(T_obj + "_" + dt_now)
-        uid = base64.b64encode(genText)
-        
-        return(uid)
 
 
 # ----- Methods binding command to model -----
-class WithTxt():
-    pass
+
+# Toml
+def getTomlDoc(tomlName):
+    try:
+        with open(tomlName, "rb") as t:
+            doc = tomlkit.load(t)
+            
+            if doc == {}:
+                print("Error 0: Could not find correct 'config.toml'")
+                exit()
+
+            return doc
+        
+    except:
+        print("Error 0: Could not find correct 'config.toml'")
+        exit()
     
+
+def matchTomlKey(tomlName, key):
+    doc = getTomlDoc(tomlName)
+    return doc.item(key)
     
-class WithToml():
-    pass
 
-
-class WithSqlite3():
-    def __init__():
-        pass    
+# Sqlite3
     
-    def list_():
-        pass
-    
-    def add_insert():
-        pass
 
-    def edit_update():
-        pass
-
-    def del_delete():
-        pass
-    
-    con = sqlite3.connect("KanbanCore.db")
-    cur = con.cursor
-
-# class WithMd():
+# Markdown
 
 
-# class WithCsv():
+# csv
 
 
-# class WithMongo():
+# MongoDB
