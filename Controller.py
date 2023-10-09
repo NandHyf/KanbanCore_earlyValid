@@ -3,7 +3,28 @@
 import Stateful, View
 
 class Command():
-    pass
+    def list():
+        pass
+
+    def add():
+        pass
+    
+    def delete():
+        pass
+
+    def edit():
+        pass
+    
+    def move():
+        pass
+
+    def backHome():
+        pass
+
+    def backPrevious():
+        pass
+    
+
 
 class Client():
 
@@ -27,7 +48,7 @@ class Client():
         Client.get_config()
 
         # test code
-        Client.get_help()
+
 
 
         # 2. list board
