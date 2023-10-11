@@ -49,7 +49,7 @@ class Client():
         print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
 
 
-    def handleCommand():
+    def handleCommand(commad):
         pass
 
 

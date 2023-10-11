@@ -8,6 +8,9 @@ listStyle = "tree"
 # >>>need some guidance here<<<
 EnableGlobalCommand = false
 
+DBType = "sqlite3"
+DBPath = "test.db"
+
 # Choose between: sqlite3/toml/md/csv/mongodb
 # However toml/md/csv/mongodb are not supported in v1.0
 [Database]
