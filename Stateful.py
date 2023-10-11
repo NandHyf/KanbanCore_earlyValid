@@ -1,5 +1,5 @@
 # @author:hyf
-import os
+
 import base64, datetime
 import tomlkit, sqlite3
 
@@ -22,13 +22,13 @@ def getTomlDoc(tomlName):
             doc = tomlkit.load(t)
 
             if doc == {}:
-                print("Error 0: Could not find correct 'config.toml'")
+                input("Error 0: Could not find correct 'config.toml'")
                 exit()
 
             return doc
         
     except:
-        print("Error 0: Could not find correct 'config.toml'")
+        input("Error 0: Could not find correct 'config.toml'")
         exit()
     
 
@@ -55,6 +55,7 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
 
         return rl
     
+
     elif table != None:
         rl = []
         d = doc.unwrap()
@@ -67,7 +68,33 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
 
 
 # Sqlite3
-    
+def connect_sqlite3(dbPath):
+    con = sqlite3.connect(dbPath)
+
+    cur = con.cursor()
+
+    cur.close()
+
+def closeConnect():
+    pass
+
+def list_SELECT():
+    pass
+
+def add_CREATE():
+    pass
+
+def add_INSERT_INTO():
+    pass
+
+def edit_UPDATE():
+    pass
+
+def delete_DELELTE():
+    pass
+
+def delete_DROP():
+    pass
 
 # Markdown
 

@@ -30,17 +30,27 @@ class Client():
 
     def get_config():
         # T-B-C...
-        configs = ['lang', 'listStyle']
+        configs = ['lang', 'listStyle', 'DBType', 'DBPath']
         # rl == 'r'eturn 'l'ist
         rl = Stateful.matchTomlKeys("config.toml", configs)
         
-        global lang, listStyle
+        global lang, listStyle, dbType, dbPath
         lang = rl[0]
         listStyle = rl[1]
+        dbType = rl[2]
+        dbPath = rl[3]
+
+        global commands
+        commands = []
+
 
 
     def get_help():
         print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
+
+
+    def handleCommand():
+        pass
 
 
     def start():
