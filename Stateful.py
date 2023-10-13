@@ -1,5 +1,4 @@
-# @author:hyf
-
+import Exceptions
 import base64, datetime
 import tomlkit, sqlite3
 
@@ -12,7 +11,6 @@ def generate_uid(kw):
     return(uid)
 
 
-
 # ----- Methods binding command to model -----
 
 # Toml
@@ -22,14 +20,12 @@ def getTomlDoc(tomlName):
             doc = tomlkit.load(t)
 
             if doc == {}:
-                input("Error 0: Could not find correct 'config.toml'")
-                exit()
+                Exceptions.err0()
 
             return doc
         
     except:
-        input("Error 0: Could not find correct 'config.toml'")
-        exit()
+        Exceptions.err0()
     
 
 def matchTomlKey(tomlName, key, table=None) -> str:
@@ -51,7 +47,10 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
         rl = []
 
         for key in keys:
-            rl.append(doc.item(key))
+            try:
+                rl.append(doc.item(key))
+            except:
+                Exceptions.err0()
 
         return rl
     

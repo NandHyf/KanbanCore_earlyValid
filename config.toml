@@ -3,7 +3,7 @@
 lang = "en"
 
 # tree/expand
-listStyle = "tree"
+# listStyle = "tree"
 
 # >>>need some guidance here<<<
 EnableGlobalCommand = false
