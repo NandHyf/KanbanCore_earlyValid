@@ -11,6 +11,11 @@ EnableGlobalCommand = false
 DBType = "sqlite3"
 DBPath = "test.db"
 
+# 
+# utc/utc+-n (UTC-12 ~ UTC+14)
+# This will not effect the "uid related" time settings(UTC+0)
+displayTime = "UTC+8"
+
 # Choose between: sqlite3/toml/md/csv/mongodb
 # However toml/md/csv/mongodb are not supported in v1.0
 [Database]
