@@ -96,16 +96,16 @@ def TransitHandler(transit_command):
     if dbType == "sqlite3":
         operate_sqlite3(dbPath, exec_command)
 
-    if dbType == "csv":
+    elif dbType == "csv":
         pass
 
-    if dbType == "mongodb":
+    elif dbType == "mongodb":
         pass
 
-    if dbType == "toml":
+    elif dbType == "toml":
         pass
 
-    if dbType == "md":
+    elif dbType == "md":
         pass
 
     else:
