@@ -21,12 +21,14 @@ def getTomlDoc(tomlName):
             doc = tomlkit.load(t)
 
             if doc == {}:
-                Exceptions.err0()
+                input("error 0: could not found correct config file") 
+                exit()
 
             return doc
         
     except:
-        Exceptions.err0()
+        input("error 0: could not found correct config file") 
+        exit()
     
 
 def matchTomlKey(tomlName, key, table=None) -> str:
@@ -109,6 +111,6 @@ def TransitHandler(transit_command):
         pass
 
     else:
-        input("err 1: correct db not found")
+        input("error 1: could not found correct Data Base")
         exit()
 

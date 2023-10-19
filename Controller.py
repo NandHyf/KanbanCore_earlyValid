@@ -1,5 +1,5 @@
 import Exceptions
-import Stateful, View
+import Stateful
 
 
 class Client():
