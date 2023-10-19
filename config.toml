@@ -3,7 +3,7 @@
 lang = "en"
 
 # tree/expand
-# listStyle = "tree"
+listStyle = "tree"
 
 # >>>need some guidance here<<<
 EnableGlobalCommand = false
@@ -23,9 +23,28 @@ type = "sqlite3"
 path = "test.db"
 
 
+# ----- DB Syntax Translation -----
+[sqlite3]
+list = "SELECT"
+add = "INSERT INTO"
+edit = "UPDATE"
+
+
+[csv]
+
+
+[mongodb]
+
+
+[toml_as_DB]
+
+
+[md_as_DB]
+
+
 # ----- helps -----
 # 难道用asicⅡ然后根据系统语言转换?
-# 或者是单独的.toml/.txt 文本文件也行
+# 或者是单独的.toml/.txt 文本文件也行 <<< 采用这个方案
 [command-help]
 en = """
 Help texts in en
@@ -38,4 +57,3 @@ Help texts in zh-s
 [could-not-find]
 en = "could not find"
 zh-s = "找不到"
-

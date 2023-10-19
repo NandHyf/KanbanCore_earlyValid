@@ -1,29 +1,6 @@
 import Exceptions
 import Stateful, View
 
-class Command():
-    def list():
-        pass
-
-    def add():
-        pass
-    
-    def delete():
-        pass
-
-    def edit():
-        pass
-    
-    def move():
-        pass
-
-    def backHome():
-        pass
-
-    def backPrevious():
-        pass
-    
-
 
 class Client():
 
@@ -48,8 +25,13 @@ class Client():
         print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
 
 
-    def handleCommand(commad):
-        pass
+    def transitCommand():
+        app_command = input("~/: ").split(" ")
+
+
+        app_command.append(dbType)
+        app_command.append(dbPath)
+        Stateful.transitHandler(app_command)
 
 
     def start():
@@ -57,14 +39,14 @@ class Client():
         Client.get_config()
 
         # test code
-
+        Client.transitCommand()
 
 
         # 2. list board
         # Command.list
 
         # 3. wait command input
-        command = input()
+
 
 
 if __name__ == "__main__":

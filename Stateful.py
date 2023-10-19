@@ -3,6 +3,7 @@ import base64, datetime
 import tomlkit, sqlite3
 
 # kw == 'k'ey 'w'ord; dt_now = date&&time in UTC
+# Please consider adding more salt to prevent uid duplication(specially under multi-user use case)
 def generate_uid(kw):
     dt_now = str(datetime.datetime.now(datetime.timezone.utc))
     genText = str.encode(kw + "_" + dt_now)
@@ -50,7 +51,7 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
             try:
                 rl.append(doc.item(key))
             except:
-                Exceptions.err0()
+                pass
 
         return rl
     
@@ -67,30 +68,15 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
 
 
 # Sqlite3
-def connect_sqlite3(dbPath):
+def operate_sqlite3(dbPath, command):
     con = sqlite3.connect(dbPath)
-
     cur = con.cursor()
 
+    # 
+    cur.execute()
+    
     cur.close()
 
-def closeConnect():
-    pass
-
-def list_SELECT():
-    pass
-
-def add_CREATE():
-    pass
-
-def add_INSERT_INTO():
-    pass
-
-def edit_UPDATE():
-    pass
-
-def delete_status2del():
-    pass
 
 # Markdown
 
@@ -99,3 +85,30 @@ def delete_status2del():
 
 
 # MongoDB
+
+
+# ----- Transit Command Handler -----
+def transitHandler(transit_command):
+    dbType = transit_command[-1]
+    dbPath = transit_command[-2]
+    exec_command = transit_command[0:-3]
+
+    if dbType == "sqlite3":
+        operate_sqlite3(dbPath, exec_command)
+
+    if dbType == "csv":
+        pass
+
+    if dbType == "mongodb":
+        pass
+
+    if dbType == "toml":
+        pass
+
+    if dbType == "md":
+        pass
+
+    else:
+        input("err 1: correct db not found")
+        exit()
+
