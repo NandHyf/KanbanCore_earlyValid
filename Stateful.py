@@ -88,7 +88,7 @@ def operate_sqlite3(dbPath, command):
 
 
 # ----- Transit Command Handler -----
-def transitHandler(transit_command):
+def TransitHandler(transit_command):
     dbType = transit_command[-1]
     dbPath = transit_command[-2]
     exec_command = transit_command[0:-3]

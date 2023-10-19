@@ -8,6 +8,8 @@ listStyle = "tree"
 # >>>need some guidance here<<<
 EnableGlobalCommand = false
 
+# Choose between: sqlite3/toml/md/csv/mongodb
+# However toml/md/csv/mongodb are not supported in v1.0
 DBType = "sqlite3"
 DBPath = "test.db"
 
@@ -16,14 +18,8 @@ DBPath = "test.db"
 # This will not effect the "uid related" time settings(UTC+0)
 displayTime = "UTC+8"
 
-# Choose between: sqlite3/toml/md/csv/mongodb
-# However toml/md/csv/mongodb are not supported in v1.0
-[Database]
-type = "sqlite3"
-path = "test.db"
 
-
-# ----- DB Syntax Translation -----
+# ----- App Command to DB Syntax Translation -----
 [sqlite3]
 list = "SELECT"
 add = "INSERT INTO"

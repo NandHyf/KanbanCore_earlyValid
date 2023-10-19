@@ -20,18 +20,18 @@ class Client():
         commands = []
 
 
-
     def get_help():
         print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
 
 
-    def transitCommand():
-        app_command = input("~/: ").split(" ")
+    def TransitCommand():
+        # current path as a var instead↓ of input text
+        app_command = input("        ~/: ").split(" ")
 
 
         app_command.append(dbType)
         app_command.append(dbPath)
-        Stateful.transitHandler(app_command)
+        Stateful.TransitHandler(app_command)
 
 
     def start():
@@ -39,14 +39,11 @@ class Client():
         Client.get_config()
 
         # test code
-        Client.transitCommand()
+        Client.TransitCommand()
 
 
         # 2. list board
         # Command.list
-
-        # 3. wait command input
-
 
 
 if __name__ == "__main__":
