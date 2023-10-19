@@ -89,10 +89,7 @@ def add_INSERT_INTO():
 def edit_UPDATE():
     pass
 
-def delete_DELELTE():
-    pass
-
-def delete_DROP():
+def delete_status2del():
     pass
 
 # Markdown
