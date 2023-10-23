@@ -8,7 +8,20 @@ displayTime = "utc+8"
 
 # ----- App Command to DB Syntax Translation -----
 [sqlite3]
+# app_command[0] -> command1
+"/" = "SELECT name FROM sqlite_master WHERE type='table';"
 list = "SELECT"
 add = "INSERT INTO"
 edit = "UPDATE"
 delete = "UPDATE" # change stauts to "deleted"
+
+# app_command[1] -> obj1
+board = "TABLE {boardName} "
+class = ""
+event = ""
+
+# app_command[2] -> tag1
+"-name" = ""
+"-d" = ""
+"-ddl" = ""
+to = ""

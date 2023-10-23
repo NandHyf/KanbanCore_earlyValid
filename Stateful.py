@@ -12,10 +12,9 @@ def generate_uid(kw):
     return(uid)
 
 
-# ----- Methods binding command to model -----
-
+# ----- Methods binding app command to model -----
 # Toml
-def getTomlDoc(tomlName):
+def GetTomlDoc(tomlName):
     try:
         with open(tomlName, "rb") as t:
             doc = tomlkit.load(t)
@@ -31,8 +30,8 @@ def getTomlDoc(tomlName):
         exit()
     
 
-def matchTomlKey(tomlName, key, table=None) -> str:
-    doc = getTomlDoc(tomlName)
+def MatchTomlKey(tomlName, key, table=None) -> str:
+    doc = GetTomlDoc(tomlName)
 
     if table == None:
         return str(doc.item(key))
@@ -42,8 +41,9 @@ def matchTomlKey(tomlName, key, table=None) -> str:
         return str(d[table][key])
 
 
-def matchTomlKeys(tomlName, keys, table=None) -> list:
-    doc = getTomlDoc(tomlName)
+# no differernt between ↑ MatchTomlKey() ↑ except receives and returns in list
+def MatchTomlKeys(tomlName, keys, table=None) -> list:
+    doc = GetTomlDoc(tomlName)
 
     if table == None:
         # rl == 'r'eturn 'l'ist
@@ -69,25 +69,15 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
 
 
 # Sqlite3
-def operate_sqlite3(dbPath, command):
+def Operate_sqlite3(dbPath, dbType, match_commands):
+    matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, dbType)
+
+    s = " "
+
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
-
-    # list -> .TABLES
-    if command[0] == "list" and command[1] == "board":
-        cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        print(cur.fetchall())
-    # add -> CREATE
-    elif command[0] == "add" and command[1] == "board":
-        cur.execute('''        ''')
-
-    # add -> INSERT INTO
-
-    # edit -> UPDATE
-
-    # delete -> UPDATE(status -> 'deleted')
     
-    cur.close()
+    con.close()
 
 
 # Markdown
@@ -100,13 +90,13 @@ def operate_sqlite3(dbPath, command):
 
 
 # ----- Transit Command Handler -----
-def TransitHandler(transit_command):
-    dbType = transit_command[-1]
-    dbPath = transit_command[-2]
-    exec_command = transit_command[0:-2]
+def TransitHandler(transit_commands):
+    dbType = transit_commands[-1]
+    dbPath = transit_commands[-2]
+    match_commands = transit_commands[0:-2]
 
     if dbType == "sqlite3":
-        operate_sqlite3(dbPath, exec_command)
+        Operate_sqlite3(dbPath, dbType, match_commands)
 
     elif dbType == "csv":
         pass
@@ -123,3 +113,11 @@ def TransitHandler(transit_command):
     else:
         input("error 1: could not found correct Data Base")
         exit()
+
+
+if __name__ == "__main__":
+    
+    a_c = ['add', 'board']
+    e_c = ['add', 'board']
+    Operate_sqlite3("test.db", "sqlite3", e_c)
+    

@@ -25,8 +25,9 @@ class Client():
         # do while or for (1)
         while(1):
             app_command = input(currentPath + "/: ", ).split(" ")
-            # Syntax check
-
+            # Input exception check
+            
+            # Add DBType && Path
             app_command.append(dbPath)
             app_command.append(dbType)
             Stateful.TransitHandler(app_command)
@@ -43,7 +44,7 @@ class Client():
 
         # ↑↑↑ test code here ↑↑↑
 
-        # Normalized Start Process
+        # 2. Normalized Start Process
         startState = Stateful.TransitHandler(['list', 'board', dbPath, dbType])
         print(startState)
         Client.TransitCommand()
