@@ -22,7 +22,7 @@
 
 > list class <className> in <boardName>
 
-> list event -> err <err_code>:
+> list event -> err <err_code>: # 或者说这里该是事件详情吗？（展开事件那种）
 
 ## add
 > add board <boardName> 
@@ -36,6 +36,15 @@ check_exist()
     not-exist:
         INSERT INTO <Class> VALUES
         (<class_uid>, <class_name>, <used_board>, <status>)
+
+> add event <eventName> to <boardName>/<className> # 草！超出去了，报个error算了(╬▔皿▔)╯
+> (已经在某个事件下面) add event <eventName> to <className> # 淦已经看到重构的大坑了
+
+> add event <eventName> -d <descriptions> # 中间带空格怎么办?
+
+> add event <eventName> -ddl <ddlTime>
+
+> add event <eventName> -d <descriptions> -ddl <ddlTime>
 
 
 ## edit
@@ -64,4 +73,5 @@ UPDATE
 
 ## /
 > /
+# 记得设置 currentPath = "/" 
 "SELECT name FROM sqlite_master WHERE type='table';"
