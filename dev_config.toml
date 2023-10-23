@@ -11,14 +11,16 @@ displayTime = "utc+8"
 # app_command[0] -> command1
 "/" = "SELECT name FROM sqlite_master WHERE type='table';"
 list = "SELECT "
+create = "CREATE "
 add = "INSERT INTO "
 edit = "UPDATE "
 delete = "UPDATE " # change stauts to "deleted"
 
 # app_command[1] -> obj1
-board = "TABLE {boardName} "
-class = "TABLE {className} "
-event = "TABLE {eventName} "
+board = "TABLE {tableName}({board_uid}, {board_name}, {status})"
+class = "TABLE {tableName}({class_uid}, {class_name}, {used_board}, {status})"
+event = "TABLE {tableName}({event_uid}, {event_name}, {event_dscrp}, {event_creator}, {createdTime}, {class_created}, {ddlTime}, {alertTime}, {currentClass}, {status})"
+stucked = "TABLE {tableName}({board_uid}, {event_uid}, {stucked_time}, {solved_time})"
 
 # app_command[2] -> tag1
 "-name" = ""

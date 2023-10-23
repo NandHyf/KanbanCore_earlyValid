@@ -75,11 +75,16 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
 def Operate_sqlite3(dbPath, match_commands):
     matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, "sqlite3")
 
-    s = " ".join(matchedSyntax)
+    s = "".join(matchedSyntax).format(tableName = match_commands[2])
+   
 
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
     
+    res = cur.execute(s)
+    res.fetchone()
+    # if res = None:
+
     con.close()
 
 
@@ -118,11 +123,11 @@ def PackHandler(app_commands):
 
 
 if __name__ == "__main__":
-    
-    a_c = ['add', 'board', 'testBoardName', 'test.db', 'sqlite3']
-    a_c1 = ['edit', 'board', 't_boardName', 'to', 't_newBoardName', 'test.db', 'sqlite3']
+    a_c = ['/', 'test.db', 'sqlite3']
+    a_c1 = ['add', 'board', 'testBoardName', 'test.db', 'sqlite3']
+    a_c2 = ['edit', 'board', 't_boardName', 'to', 't_newBoardName', 'test.db', 'sqlite3']
     e_c = ['add', 'board']
-    
+
     # Operate_sqlite3("test.db", a_c1)
-    PackHandler(a_c)
+    PackHandler(a_c2)
     

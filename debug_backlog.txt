@@ -7,5 +7,7 @@
 
 # ----- Stateful.py -----
 1. 读取toml文件时候没有匹配到键的异常处理: 已解决(通过table=None的参数)
+2. list board 之后返回None要不要做异常处理(成换行)
+3. add命令的判断: 是CREATE 还是 INSERT INTO
 
 # ----- Alt.py -----
