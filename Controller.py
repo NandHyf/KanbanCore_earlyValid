@@ -16,21 +16,18 @@ class Client():
         dbType = rl[2]
         dbPath = rl[3]
 
-        global commands
-        commands = []
-
 
     def get_help():
         print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
 
 
     def TransitCommand():
-        # current path as a var instead↓ of input text
-        app_command = input("        ~/: ").split(" ")
+        # do while or for (1)
+        app_command = input(currentPath).split(" ")
 
 
-        app_command.append(dbType)
         app_command.append(dbPath)
+        app_command.append(dbType)
         Stateful.TransitHandler(app_command)
 
 
@@ -38,7 +35,16 @@ class Client():
         # 1. get config
         Client.get_config()
 
-        # test code
+        global currentPath
+        currentPath = "/: "
+        # ↓↓↓ test code here ↓↓↓
+
+
+        # ↑↑↑ test code here ↑↑↑
+
+        # Normalized Start Process
+        startState = Stateful.TransitHandler(['list', 'board', dbPath, dbType])
+        
         Client.TransitCommand()
 
 

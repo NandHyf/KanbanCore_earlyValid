@@ -75,7 +75,7 @@ def operate_sqlite3(dbPath, command):
     cur = con.cursor()
 
     # 
-    cur.execute()
+    # cur.execute()
     
     cur.close()
 

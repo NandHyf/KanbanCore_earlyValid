@@ -1,0 +1,15 @@
+# ----- App Configuration -----
+lang = "en"
+listStyle = "tree"
+
+DBType = "sqlite3"
+DBPath = "test.db"
+
+displayTime = "utc+8"
+
+# ----- App Command to DB Syntax Translation -----
+[sqlite3]
+list = "SELECT"
+add = "INSERT INTO"
+edit = "UPDATE"
+delete = "UPDATE" # change stauts to "deleted"

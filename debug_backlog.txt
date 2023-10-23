@@ -1,0 +1,10 @@
+# ----- config.toml -----
+1. DBPath 是否支持填写路径/绝对路径/相对路径
+
+# ----- Controller.py -----
+1. app_command 输入不合法字符的异常处理
+
+# ----- Stateful.py -----
+1. 读取toml文件时候没有匹配到键的异常处理 
+
+# ----- Alt.py -----
