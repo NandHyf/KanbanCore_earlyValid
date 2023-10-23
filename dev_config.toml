@@ -17,12 +17,13 @@ edit = "UPDATE "
 delete = "UPDATE " # change stauts to "deleted"
 
 # app_command[1] -> obj1
-board = "TABLE {tableName}({board_uid}, {board_name}, {status})"
-class = "TABLE {tableName}({class_uid}, {class_name}, {used_board}, {status})"
-event = "TABLE {tableName}({event_uid}, {event_name}, {event_dscrp}, {event_creator}, {createdTime}, {class_created}, {ddlTime}, {alertTime}, {currentClass}, {status})"
-stucked = "TABLE {tableName}({board_uid}, {event_uid}, {stucked_time}, {solved_time})"
+board = "TABLE {tableName}({uid}, {objName}, {status})"
+class = "TABLE {tableName}({uid}, {objName}, {used_board}, {status})"
+event = "TABLE {tableName}({uid}, {objName}, {event_dscrp}, {event_creator}, {createdTime}, {class_created}, {ddlTime}, {alertTime}, {currentClass}, {status})"
 
-# app_command[2] -> tag1
+stucked = "TABLE {tableName}({uid}, {event_uid}, {stucked_time}, {solved_time})"
+
+# app_command[2] -> tag
 "-name" = ""
 "-d" = ""
 "-ddl" = ""

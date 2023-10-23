@@ -75,7 +75,7 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
 def Operate_sqlite3(dbPath, match_commands):
     matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, "sqlite3")
 
-    s = "".join(matchedSyntax).format(tableName = match_commands[2])
+    s = "".join(matchedSyntax).format(tableName = match_commands[1], objName = match_commands[2])
    
 
     con = sqlite3.connect(dbPath)

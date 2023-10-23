@@ -11,3 +11,57 @@
 3. add命令的判断: 是CREATE 还是 INSERT INTO
 
 # ----- Alt.py -----
+
+# ----- Model -----
+1. 不同类别命名既然相互引用了那其中一个看板的某个类别改了名称其他引用了该类型的也会被改了
+
+
+# ----- Reference for dev -----
+## list
+> list board <boardName>
+
+> list class <className> in <boardName>
+
+> list event -> err <err_code>:
+
+## add
+> add board <boardName> 
+CREATE TABLE <boardName>(<board_uid>, <board_name>, <status>);
+
+> add class <className> to <boardName>
+check_exist()
+    exist:
+
+
+    not-exist:
+        INSERT INTO <Class> VALUES
+        (<class_uid>, <class_name>, <used_board>, <status>)
+
+
+## edit
+> edit board <boardName> to <newBoardName>
+UPDATE 
+
+> edit class <className> to <newClassName>
+# 新建一个类别和引用关系, 然后再把旧的类别里面的引用关系删除
+INSERT INTO <ClassTable> VALUES ()
+UPDATE 
+
+> edit event <eventName> in <boardName>
+
+
+## delete
+
+
+## move
+
+
+## select
+
+
+## ..
+
+
+## /
+> /
+"SELECT name FROM sqlite_master WHERE type='table';"
