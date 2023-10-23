@@ -68,14 +68,24 @@ def matchTomlKeys(tomlName, keys, table=None) -> list:
         return rl
 
 
-
 # Sqlite3
 def operate_sqlite3(dbPath, command):
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
 
-    # 
-    # cur.execute()
+    # list -> .TABLES
+    if command[0] == "list" and command[1] == "board":
+        cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        print(cur.fetchall())
+    # add -> CREATE
+    elif command[0] == "add" and command[1] == "board":
+        cur.execute('''        ''')
+
+    # add -> INSERT INTO
+
+    # edit -> UPDATE
+
+    # delete -> UPDATE(status -> 'deleted')
     
     cur.close()
 
@@ -93,7 +103,7 @@ def operate_sqlite3(dbPath, command):
 def TransitHandler(transit_command):
     dbType = transit_command[-1]
     dbPath = transit_command[-2]
-    exec_command = transit_command[0:-3]
+    exec_command = transit_command[0:-2]
 
     if dbType == "sqlite3":
         operate_sqlite3(dbPath, exec_command)
@@ -113,4 +123,3 @@ def TransitHandler(transit_command):
     else:
         input("error 1: could not found correct Data Base")
         exit()
-

@@ -3,6 +3,7 @@
 
 # ----- Controller.py -----
 1. app_command 输入不合法字符的异常处理
+2. 原本该在Focus模式工作的SELECT出现在全局命令里的异常处理
 
 # ----- Stateful.py -----
 1. 读取toml文件时候没有匹配到键的异常处理 

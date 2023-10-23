@@ -1,10 +1,9 @@
 # ----- App Configuration -----
-lang = "en"
-listStyle = "tree"
-
 DBType = "sqlite3"
 DBPath = "test.db"
 
+lang = "en"
+listStyle = "tree"
 displayTime = "utc+8"
 
 # ----- App Command to DB Syntax Translation -----

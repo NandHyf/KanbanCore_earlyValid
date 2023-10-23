@@ -1,34 +1,35 @@
-import Alt
-import Stateful
-
+import Alt, Stateful
+import datetime
+    
 
 class Client():
 
     def get_config():
         # T-B-C...
-        configs = ['lang', 'listStyle', 'DBType', 'DBPath']
+        configs = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTime']
         # rl == 'r'eturn 'l'ist
         rl = Stateful.matchTomlKeys("config.toml", configs)
         
         global lang, listStyle, dbType, dbPath
-        lang = rl[0]
-        listStyle = rl[1]
-        dbType = rl[2]
-        dbPath = rl[3]
-
+        dbType = rl[0]
+        dbPath = rl[1]
+        lang = rl[2]
+        listStyle = rl[3]
+        displayTime = rl[4]
 
     def get_help():
-        print(Stateful.matchTomlKey("config.toml", lang, "command-help"))
+        print(Stateful.matchTomlKey("clean_config.toml", lang, "command-help"))
 
 
     def TransitCommand():
         # do while or for (1)
-        app_command = input(currentPath).split(" ")
+        while(1):
+            app_command = input(currentPath + "/: ", ).split(" ")
+            # Syntax check
 
-
-        app_command.append(dbPath)
-        app_command.append(dbType)
-        Stateful.TransitHandler(app_command)
+            app_command.append(dbPath)
+            app_command.append(dbType)
+            Stateful.TransitHandler(app_command)
 
 
     def start():
@@ -36,7 +37,7 @@ class Client():
         Client.get_config()
 
         global currentPath
-        currentPath = "/: "
+        currentPath = " "
         # ↓↓↓ test code here ↓↓↓
 
 
@@ -44,13 +45,19 @@ class Client():
 
         # Normalized Start Process
         startState = Stateful.TransitHandler(['list', 'board', dbPath, dbType])
-        
+        print(startState)
         Client.TransitCommand()
 
 
-        # 2. list board
-        # Command.list
+class View:
+    def ToDisplayTime(utcTime, TimeZone):
+        displayTime = "displayTime translation not finished"
+        return displayTime
+    
+    def Refresh():
+        pass
 
+    
 
 if __name__ == "__main__":
     Client.start()
