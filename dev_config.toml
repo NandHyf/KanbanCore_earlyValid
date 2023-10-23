@@ -10,18 +10,18 @@ displayTime = "utc+8"
 [sqlite3]
 # app_command[0] -> command1
 "/" = "SELECT name FROM sqlite_master WHERE type='table';"
-list = "SELECT"
-add = "INSERT INTO"
-edit = "UPDATE"
-delete = "UPDATE" # change stauts to "deleted"
+list = "SELECT "
+add = "INSERT INTO "
+edit = "UPDATE "
+delete = "UPDATE " # change stauts to "deleted"
 
 # app_command[1] -> obj1
 board = "TABLE {boardName} "
-class = ""
-event = ""
+class = "TABLE {className} "
+event = "TABLE {eventName} "
 
 # app_command[2] -> tag1
 "-name" = ""
 "-d" = ""
 "-ddl" = ""
-to = ""
+to = "here is to"

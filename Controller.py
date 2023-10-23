@@ -24,13 +24,13 @@ class Client():
     def TransitCommand():
         # do while or for (1)
         while(1):
-            app_command = input(currentPath + "/: ", ).split(" ")
+            app_commands = input(currentPath + "/: ", ).split(" ")
             # Input exception check
             
             # Add DBType && Path
-            app_command.append(dbPath)
-            app_command.append(dbType)
-            Stateful.TransitHandler(app_command)
+            app_commands.append(dbPath)
+            app_commands.append(dbType)
+            Stateful.PackHandler(app_commands)
 
 
     def start():

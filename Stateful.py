@@ -63,16 +63,19 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
         d = doc.unwrap()
 
         for key in keys:
-            rl.append(d[table][key])
+            try:
+                rl.append(d[table][key])
+            except:
+                pass
 
         return rl
 
 
 # Sqlite3
-def Operate_sqlite3(dbPath, dbType, match_commands):
-    matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, dbType)
+def Operate_sqlite3(dbPath, match_commands):
+    matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, "sqlite3")
 
-    s = " "
+    s = " ".join(matchedSyntax)
 
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
@@ -90,13 +93,12 @@ def Operate_sqlite3(dbPath, dbType, match_commands):
 
 
 # ----- Transit Command Handler -----
-def TransitHandler(transit_commands):
-    dbType = transit_commands[-1]
-    dbPath = transit_commands[-2]
-    match_commands = transit_commands[0:-2]
+def PackHandler(app_commands):
+    dbType = app_commands[-1]
+    dbPath = app_commands[-2]
 
     if dbType == "sqlite3":
-        Operate_sqlite3(dbPath, dbType, match_commands)
+        Operate_sqlite3(dbPath, app_commands)
 
     elif dbType == "csv":
         pass
@@ -117,7 +119,10 @@ def TransitHandler(transit_commands):
 
 if __name__ == "__main__":
     
-    a_c = ['add', 'board']
+    a_c = ['add', 'board', 'testBoardName', 'test.db', 'sqlite3']
+    a_c1 = ['edit', 'board', 't_boardName', 'to', 't_newBoardName', 'test.db', 'sqlite3']
     e_c = ['add', 'board']
-    Operate_sqlite3("test.db", "sqlite3", e_c)
+    
+    # Operate_sqlite3("test.db", a_c1)
+    PackHandler(a_c)
     
