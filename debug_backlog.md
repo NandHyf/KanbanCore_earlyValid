@@ -54,8 +54,37 @@
 > /<boardName>/: select class <boardName2>/<className>
 
 
+# ----- 要不先整理一下后端的句子，前端太难搞了 -----
+[CREATE TABLE]
+CREATE TABLE Board(board_uid, board_name, status)
+CREATE TABLE Class(class_uid, class_name, using_board, status)
+CREATE TABLE Event(event_uid, event_name, event_dscrp, event_creator, createdTime, belongBoard, class_created, ddlTime, alertTime, currentClass, status)
+CREATE TABLE Stucked(board_uid, event_uid, stucked_time, solved_time)
+CREATE TABLE Alert(event_uid, alert_time, status)
+CREATE TABLE Ddl(event_uid, ddlTime, status)
+
+[SELECT ]
+select:
 
 
+[INSERT INTO]
+INSERT INTO <Board/Class/Event/Stucked/Alert/Ddl>
+
+[UPDATE ]
+edit:
+UPDATE <table> SET <column> WHERE uid = <uid>
+
+delete:
+UPDATE <table> SET status WHERE uid = <uid>
+
+
+[DROP ]
+wipe:
+
+erase:
+
+
+# ----- 前端输入 -----
 [add]
 > add board <boardName>
 is_exist()
