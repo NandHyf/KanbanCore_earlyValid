@@ -10,6 +10,8 @@
 2. list board 之后返回None要不要做异常处理(成换行)
 3. add命令的判断: 是CREATE 还是 INSERT INTO
 4. 验证一下uid的长度有没有对齐
+   
+- BigWipe()清理/重构功能
 
 # ----- Alt.py -----
 1. 太多了且后面排着吧
@@ -23,36 +25,52 @@
 # ----- Reference for dev -----
 [list]
 > list board <boardName>
+SELECT
 
 > list class <className> in <boardName>
+SELECT 
 
-> list event -> err <err_code_syntax-error>: # 或者说这里该是事件详情吗？（展开事件那种）
+> list event -> err <errCode_syntax>: # 或者说这里该是事件详情吗？（展开事件那种）
+(展开事件详情)SELECT 
 
 [add]
-> add board <boardName> 
-CREATE TABLE <boardName>(<board_uid>, <board_name>, <status>);
+> add board <boardName>
+is_exist()
+
+    y:
+        <errCode_existed>
+        "已有重复, 是否前往"y/n?
+    n:
+        INSERT INTO Board VALUES
+        (<board_name>, <status>)
 
 > add class <className> to <boardName>
-check_exist()
-    exist:
+is_exist()
+
+    y:
+        <errCode_existed>
+        "已有重复, 是否前往"y/n?
+
+    n:
+        INSERT INTO Class VALUES
+        (<class_name>, <used_board>, <status>)
+
+> add event <eventName> to <boardName>/<className>
+is_exist()
+    y:
+        <errCode_existed>
+        "已有重复, 是否前往"y/n?
+
+    n: # 这里默认了一个意外输错的异常处理: 如果boardName或者ClassName输错了则直接创建一个新的, 即"我们始终相信你知道自己在做什么"的原则
+        INSERT INTO Event VALUES
+        (<EventName>, <event_dscrp>, <event_creator>, <createdTime>, <classCreated>, <ddlTime>, <alertTime>, <currentClass>, <status>)
 
 
-    not-exist:
-        INSERT INTO <Class> VALUES
-        (<class_uid>, <class_name>, <used_board>, <status>)
+> (已经在某个事件下面) add event <eventName> to <className>
+<errCode_syntax>(应该明确到Board/Class)
 
-> add event <eventName> to <boardName>/<className> # 草！超出去了，报个error算了(╬▔皿▔)╯
-
-
-> (已经在某个事件下面) add event <eventName> to <className> # 淦已经看到重构的大坑了
-
-
-> add event <eventName> -d <descriptions> # 中间带空格怎么办?
-
-
+> add event <eventName> -d <descriptions> # 中间带空格怎么办?: 应该没什么问题
 > add event <eventName> -ddl <ddlTime>
-
-
 > add event <eventName> -d <descriptions> -ddl <ddlTime>
 
 
@@ -76,23 +94,39 @@ UPDATE
 
 
 [move]
-> move board <boardName> to <somewhere> -> err <err_code_syntax-error>: not exist
+> move board <boardName> to <somewhere> -> s <errCode_syntax>: not exist
 
 > move class <className> in <boardName> to <boardName1> # 如果boardName或者Name1 不存在又是异常
 
 > move event <eventName> in <className> to <className1> # 异常同上
 
-
-[select]
-(真的需要这个命令吗)
-
-
-
 [..]
-
+返回上一级, 通过state实现, 如果需要重新SELECT一下
+a. command buffer?: no
+b. currentPath: emm
 
 
 [/]
 > /
 # 记得设置 currentPath = "/" 
 "SELECT name FROM sqlite_master WHERE type='table';"
+
+> <boardName>
+is_exist()
+
+    > <className>
+
+        > <eventName>
+
+> <boardName>/<className>
+
+> <boardName>/<className>/<eventName>
+
+> <className>/<eventName>
+> <eventName>
+<errCode_syntax>
+
+
+# ----- errCode 汇总 -----
+1. syntax_error
+2. existed_error

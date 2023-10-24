@@ -1,15 +1,8 @@
 import Alt
-import base64, datetime
+import uuid
 import tomlkit, sqlite3
 
-# kw == 'k'ey 'w'ord; dt_now = date&&time in UTC
-# Please consider adding more salt to prevent uid duplication(specially under multi-user use case)
-def generate_uid(kw):
-    dt_now = str(datetime.datetime.now(datetime.timezone.utc))
-    genText = str.encode(kw + "_" + dt_now)
-    uid = base64.b64encode(genText)
-    
-    return(uid)
+# Place for uid
 
 
 # ----- Methods binding app command to model -----
@@ -72,6 +65,10 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
 
 
 # Sqlite3
+def Exist_in_sqlite3():
+    pass
+
+
 def Operate_sqlite3(dbPath, match_commands):
     matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, "sqlite3")
 
