@@ -23,15 +23,38 @@
 
 
 # ----- Reference for dev -----
-[list]
-> list board <boardName>
-SELECT
+[select]
+> /: select board <boardName>
+/<boardName>/: 
 
-> list class <className> in <boardName>
-SELECT 
+> /: select class <className>
+> /: select event <eventName>
+<errCode_syntax>
 
-> list event -> err <errCode_syntax>: # 或者说这里该是事件详情吗？（展开事件那种）
-(展开事件详情)SELECT 
+
+> /<boardName>/: select class <className>
+/<boardName>/<className>/: 
+
+> /<boardName>/: select event <eventName>
+/<boardName>/<className>/<eventName>/: 
+如果没有event(主要是没有class) -> errCode_not_existed
+是否在当前看板内创建事件并为其添加分类
+
+
+> /<boardName>/: select board <boardName>
+> /<boardName>/: ..
+/<boardName>/: 
+
+
+> /<boardName>/: select board <boardName2>
+/<boardName2>/: 
+
+> /<boardName>/: select board <boardName2>/<className>/<eventName>
+
+> /<boardName>/: select class <boardName2>/<className>
+
+
+
 
 [add]
 > add board <boardName>
@@ -55,13 +78,13 @@ is_exist()
         INSERT INTO Class VALUES
         (<class_name>, <used_board>, <status>)
 
-> add event <eventName> to <boardName>/<className>
+> add event <eventName> to <boardName>/<className> # className 做二级响应choose Class
 is_exist()
     y:
         <errCode_existed>
         "已有重复, 是否前往"y/n?
 
-    n: # 这里默认了一个意外输错的异常处理: 如果boardName或者ClassName输错了则直接创建一个新的, 即"我们始终相信你知道自己在做什么"的原则
+    n: # 这里默认了一个意e输错的异常处理: 如果boardName或者ClassName输错了则直接创建一个新的, 即"我们始终相信你知道自己在做什么"的原则
         INSERT INTO Event VALUES
         (<EventName>, <event_dscrp>, <event_creator>, <createdTime>, <classCreated>, <ddlTime>, <alertTime>, <currentClass>, <status>)
 
@@ -110,21 +133,6 @@ b. currentPath: emm
 > /
 # 记得设置 currentPath = "/" 
 "SELECT name FROM sqlite_master WHERE type='table';"
-
-> <boardName>
-is_exist()
-
-    > <className>
-
-        > <eventName>
-
-> <boardName>/<className>
-
-> <boardName>/<className>/<eventName>
-
-> <className>/<eventName>
-> <eventName>
-<errCode_syntax>
 
 
 # ----- errCode 汇总 -----

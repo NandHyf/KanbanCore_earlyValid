@@ -1,0 +1,29 @@
+[list]
+list board
+
+[add]
+add board 测试看板1
+add class 测试类目1 to 测试看板1
+add class 测试类目1 to 测试看板2 # 此时的异常
+add event 测试事件1 to 测试看板1 / 测试类目1
+
+[edit]
+edit board 测试看板1 to 测试看板3
+edit board 测试看板1 to 测试看板4
+
+edit class 测试类目1 to 测试类目2
+edit class 测试看板1 to 测试类目3
+edit 
+
+[move]
+move events
+
+[delete]
+delete board
+
+[/]
+测试看板3
+
+测试看板3/测试类目2
+
+测试看板3

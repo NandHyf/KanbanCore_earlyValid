@@ -8,23 +8,22 @@ displayTime = "utc+8"
 
 # ----- App Command to DB Syntax Translation -----
 [sqlite3]
-# app_command[0] -> command1
+# app_command[0]
 "/" = "SELECT name FROM sqlite_master WHERE type='table';"
-list = "SELECT "
+select = "SELECT "
 create = "CREATE "
 add = "INSERT INTO "
 edit = "UPDATE "
 delete = "UPDATE " # change stauts to "deleted"
 
-# app_command[1] -> obj1
+# app_command[1]
 board = "TABLE {tableName}({uid}, {objName}, {status})"
 class = "TABLE {tableName}({uid}, {objName}, {used_board}, {status})"
 event = "TABLE {tableName}({uid}, {objName}, {event_dscrp}, {event_creator}, {createdTime}, {class_created}, {ddlTime}, {alertTime}, {currentClass}, {status})"
-
+# "/" -> " " in Stateful
 stucked = "TABLE {tableName}({uid}, {event_uid}, {stucked_time}, {solved_time})"
 
-# app_command[2] -> tag
-"-name" = ""
+# app_command[3] && [4]
 "-d" = ""
 "-ddl" = ""
 to = "here is to"
