@@ -65,12 +65,21 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
 
 
 # Sqlite3
-def Exist_in_sqlite3():
-    pass
+def Exist_in_sqlite3(tableName, columnName=None, recordName=None):
+    if columnName == None:
+        s = "SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}';".format(tableName = tableName)
+
+    if columnName != None:
+        s = "SELECT * FROM {tableName} WHERE {columnName}={recordName}".format(tableName = tableName, columnName = columnName, recordName = recordName)
 
 
 def Operate_sqlite3(dbPath, match_commands):
     matchedSyntax = MatchTomlKeys("dev_config.toml", match_commands, "sqlite3")
+
+    # 需要检查的类型
+    # Board, 禁止重复
+    # Class, 重复就update一个引用关系
+    # Event, 同一个Board里面不允许重复, 不同Board里可以重复
 
     s = "".join(matchedSyntax).format(tableName = match_commands[1], objName = match_commands[2])
    
@@ -78,6 +87,8 @@ def Operate_sqlite3(dbPath, match_commands):
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
     
+    # is_exist()
+
     res = cur.execute(s)
     res.fetchone()
     # if res = None:

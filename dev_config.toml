@@ -12,16 +12,16 @@ displayTime = "utc+8"
 "/" = "SELECT name FROM sqlite_master WHERE type='table';"
 select = "SELECT "
 create = "CREATE "
-add = "INSERT INTO "
+add = "INSERT INTO TABLE "
 edit = "UPDATE "
 delete = "UPDATE " # change stauts to "deleted"
 
 # app_command[1]
-board = "TABLE {tableName}({uid}, {objName}, {status})"
-class = "TABLE {tableName}({uid}, {objName}, {used_board}, {status})"
-event = "TABLE {tableName}({uid}, {objName}, {event_dscrp}, {event_creator}, {createdTime}, {class_created}, {ddlTime}, {alertTime}, {currentClass}, {status})"
+board = "TABLE "
+class = "TABLE "
+event = "TABLE "
 # "/" -> " " in Stateful
-stucked = "TABLE {tableName}({uid}, {event_uid}, {stucked_time}, {solved_time})"
+stucked = "TABLE "
 
 # app_command[3] && [4]
 "-d" = ""
