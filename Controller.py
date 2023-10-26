@@ -15,11 +15,17 @@ class Client():
         dbPath = rl[1]
         lang = rl[2]
         listStyle = rl[3]
-        displayTime = rl[4]
+        displayTimeZone = rl[4]
 
     def get_help():
         print(Stateful.matchTomlKey("clean_config.toml", lang, "command-help"))
 
+
+    # not finished
+    def InUTC(timeZone=0):
+        dt_now_UTC0 = str(datetime.datetime.now(datetime.timezone.utc))
+        return(dt_now_UTC0)
+    
 
     def TransitCommand():
         # do while or for (1)

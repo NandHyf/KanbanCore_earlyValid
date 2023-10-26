@@ -56,6 +56,9 @@ def Operate_sqlite3(dbPath, commands):
     # [/]
     
     
+    # 1. 检查commands[5]是否非有'/', 有的话报错(syntax error)
+    # 2. 命令里面的<KB>, <CL>, <EV>都代入检查是否存在, 区分add/edit(INSERT INTO/UPDATE)
+    # 3. 拼SQL语句
 
     v = "SELECT * FROM {tableName} WHERE name={name}".format(tableName=str(commands[1]).capitalize(), name="'"+commands[2]+"'")
     

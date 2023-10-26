@@ -3,6 +3,7 @@
 # err 1: correct DB not found
 # -----
 import Stateful
+import datetime, base64
 
 def Err(errCode, lang):
     pass
