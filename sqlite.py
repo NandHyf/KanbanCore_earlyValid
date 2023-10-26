@@ -2,7 +2,7 @@ import sqlite3
 import Stateful
 
 deType = "sqlite3"
-dbPath = "d<EV>.db"
+dbPath = "dev.db"
 
 
 def is_exist(tableName, columnName):
