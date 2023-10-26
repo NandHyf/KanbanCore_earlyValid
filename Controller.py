@@ -2,10 +2,11 @@ import Alt, Stateful
 import datetime
     
 
+# 如果需要再封装class Board/KB_Class/Event的话就在这里
 class Client():
 
     def get_config():
-        # T-B-C...
+        # [todo 1]
         configs = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTime']
         # rl == 'r'eturn 'l'ist
         rl = Stateful.matchTomlKeys("config.toml", configs)
@@ -17,14 +18,21 @@ class Client():
         listStyle = rl[3]
         displayTimeZone = rl[4]
 
+
+    # [todo 1]
     def get_help():
         print(Stateful.matchTomlKey("clean_config.toml", lang, "command-help"))
 
 
-    # not finished
+    # [todo 2]
     def InUTC(timeZone=0):
         dt_now_UTC0 = str(datetime.datetime.now(datetime.timezone.utc))
         return(dt_now_UTC0)
+    
+
+    # [todo 3]
+    def SyntaxCheck():
+        pass
     
 
     def TransitCommand():
@@ -38,7 +46,7 @@ class Client():
             app_commands.append(dbType)
             Stateful.PackHandler(app_commands)
 
-
+    # [todo 1]
     def start():
         # 1. get config
         Client.get_config()

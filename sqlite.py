@@ -8,12 +8,14 @@ dbPath = "dev.db"
 def is_exist(tableName, columnName):
     pass
 
+
+# [todo 0]
 def Secondary_response():
     pass
 
 
 def Operate_sqlite3(dbPath, commands):
-    # Command e.g.
+    # Commands e.g.
     #    0       1       2      3      4      5     6
     # [add]
     # ['add', 'board', '<KB>']
@@ -55,8 +57,10 @@ def Operate_sqlite3(dbPath, commands):
 
     # [/]
     
-    
+    # [todo 3]
     # 1. 检查commands[5]是否为dbPath, 不是话报错(syntax error)
+    # ↑↑↑ 但是总感觉输入检查应该放在Controller里面(也就是放在前端去检查)...
+    # 前端检查语法, 冲突代回到后端去检查, 然后顺便就执行了
     # 2. 命令里面的<KB>, <CL>, <EV>都代入检查是否存在, 区分add/edit(INSERT INTO/UPDATE)
     # 3. 匹配SQL关键字
     # 4. 拼完以后进行to和in的判断
@@ -80,7 +84,7 @@ def Operate_sqlite3(dbPath, commands):
             # Secondary_response()
 
         # 2. exec command
-        matched = Stateful.MatchTomlKeys('d<EV>_config.toml', commands, 'sqlite3')
+        matched = Stateful.MatchTomlKeys('dev_config.toml', commands, 'sqlite3')
         print(matched)
 
 
