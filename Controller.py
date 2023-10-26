@@ -41,6 +41,8 @@ class Client():
             app_commands = input(currentPath + "/: ", ).split(" ")
             # Input exception check
             
+            # [todo 1]
+            # 直接在这check一下length
             # Add DBType && Path
             app_commands.append(dbPath)
             app_commands.append(dbType)
