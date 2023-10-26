@@ -6,7 +6,7 @@ import datetime
 class Client():
 
     def get_config():
-        # [todo 1]
+        # [todo 4]
         configs = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTime']
         # rl == 'r'eturn 'l'ist
         rl = Stateful.matchTomlKeys("config.toml", configs)
@@ -19,18 +19,18 @@ class Client():
         displayTimeZone = rl[4]
 
 
-    # [todo 1]
+    # [todo 4]
     def get_help():
         print(Stateful.matchTomlKey("clean_config.toml", lang, "command-help"))
 
 
-    # [todo 2]
+    # [todo 3]
     def InUTC(timeZone=0):
         dt_now_UTC0 = str(datetime.datetime.now(datetime.timezone.utc))
         return(dt_now_UTC0)
     
 
-    # [todo 3]
+    # [todo 0]
     def SyntaxCheck():
         pass
     
@@ -46,7 +46,7 @@ class Client():
             app_commands.append(dbType)
             Stateful.PackHandler(app_commands)
 
-    # [todo 1]
+    # [todo 4]
     def start():
         # 1. get config
         Client.get_config()

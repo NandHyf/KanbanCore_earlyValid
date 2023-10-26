@@ -9,7 +9,7 @@ def is_exist(tableName, columnName):
     pass
 
 
-# [todo 0]
+# [todo 3]
 def Secondary_response():
     pass
 
@@ -57,7 +57,7 @@ def Operate_sqlite3(dbPath, commands):
 
     # [/]
     
-    # [todo 3]
+    # [todo 1]
     # 1. 检查commands[5]是否为dbPath, 不是话报错(syntax error)
     # ↑↑↑ 但是总感觉输入检查应该放在Controller里面(也就是放在前端去检查)...
     # 前端检查语法, 冲突代回到后端去检查, 然后顺便就执行了
