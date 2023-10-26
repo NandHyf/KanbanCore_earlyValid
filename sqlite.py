@@ -5,7 +5,10 @@ deType = "sqlite3"
 dbPath = "dev.db"
 
 
-def is_exist(tablePath, name):
+def is_exist(tableName, columnName):
+    pass
+
+def Secondary_response():
     pass
 
 
@@ -15,22 +18,29 @@ def Operate_sqlite3(dbPath, commands):
     # commands e.g.['add', 'class', 'CL1', 'to', 'KB4']
     # commands e.g.['add', 'event', 'EV1', 'to', 'KB4', '/', 'CL2']
     # commands e.g.['add', 'event', 'EV2', 'to', 'KB4/CL3']
+
+    v = "SELECT * FROM {tableName} WHERE name={name}".format(tableName=str(commands[1]).capitalize(), name="'"+commands[2]+"'")
     
-    matched = []
-    matched = Stateful.MatchTomlKeys(commands)
-    sqls = ""
-
-    # 1. exist check
-
-    # 2. exec command
-
+    # sqls = ""
 
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
-    res = cur.execute(sqls)
-    con.commit()
-    print("res: ", res.fetchone())
+    # 1. exist check
+    try:
+        res = cur.execute(v)
+        con.commit()
+        print("res: ", res.fetchone() is None)
 
+        # syntax right but not exist:
+        if res.fetchone() is None == True:
+            print("err <Code>: could not found, creat? y/n")
+            # Secondary_response()
+        # 2. exec command
+        matched = Stateful.MatchTomlKeys('dev_config.toml', commands, 'sqlite3')
+        print(matched)
+
+    except:
+        print("err <Code>: Syntax error")
 
     con.close()
 
@@ -46,5 +56,5 @@ if __name__ == "__main__":
     sy6 = ['add', 'board', 'KB1']
 
     while(1):
-        sy_i = input("sql: ")
+        sy_i = input("sql: ").split(" ")
         Operate_sqlite3(dbPath, sy_i)
