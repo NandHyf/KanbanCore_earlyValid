@@ -6,22 +6,34 @@ lang = "en"
 listStyle = "tree"
 displayTime = "utc+8"
 
+
 # ----- App Command to DB Syntax Translation -----
+[sqlite3.init]
+DBType = "sqlite3"
+# Table name
+Board = ""
+Class = ""
+Event = ""
+Stuck = ""
+Alert = ""
+DDL = ""
+
 [sqlite3]
 # app_command[0]
 "/" = "SELECT name FROM sqlite_master WHERE type='table';"
 select = "SELECT "
-create = "CREATE "
-add = "INSERT INTO TABLE "
+add = "INSERT INTO "
 edit = "UPDATE "
 delete = "UPDATE " # change stauts to "deleted"
+wipe="DROP WHERE"
 
 # app_command[1]
-board = "TABLE "
-class = "TABLE "
-event = "TABLE "
+board = "({uid}, {name}, {status}).format(uid='', name='', status='live')"
+class = "({uid}, {name}, {usedBoard}, {status})"
+event = "({uid}, {name}, {dscrp}, {createdTime}, {belongBoard}, {classCreated}, {currentClas}, {status})"
+
 # "/" -> " " in Stateful
-stucked = "TABLE "
+stucked = "Stucked "
 
 # app_command[3] && [4]
 "-d" = ""
