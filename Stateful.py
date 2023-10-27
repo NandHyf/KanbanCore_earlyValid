@@ -88,12 +88,13 @@ def Operate_sqlite3(dbPath, match_commands):
     cur = con.cursor()
     
     # is_exist()
-
-    res = cur.execute(s)
-    res.fetchone()
+    res = cur.execute(s).fetchall()
+    # ret = res.fetchall()
     # if res = None:
+    
 
     con.close()
+    return res
 
 
 # Markdown
@@ -111,7 +112,7 @@ def PackHandler(app_commands):
     dbPath = app_commands[-2]
 
     if dbType == "sqlite3":
-        Operate_sqlite3(dbPath, app_commands)
+        return Operate_sqlite3(dbPath, app_commands)
 
     elif dbType == "csv":
         pass

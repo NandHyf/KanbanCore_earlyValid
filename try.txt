@@ -1,0 +1,18 @@
+Command = ['add', 'board', '<boardName>']
+
+tablePath = Command[2].uper()
+
+is_exist(tablePath, name=None)
+
+if name
+SELECT * FROM {tablePath} WHERE name={name}
+
+
+add event EV1 to KB4/CL2
+add event EV1 to KB4 / CL2
+
+[dev.init]
+CREATE TABLE Board(id INTEGER PRIMARY KEY AUTOINCREMENT, name, status)
+CREATE TABLE Class(id INTEGER PRIMARY KEY AUTOINCREMENT, name, usingBoard, status)
+CREATE TABLE Event(id INTEGER PRIMARY KEY AUTOINCREMENT, name, dscrp, creator, createdTime, classCreated, classCurrent, status)
+CREATE TABLE Stucked(id INTEGER PRIMARY KEY AUTOINCREMENT, boardId, eventId, stuckedTime, solvedTime, status)

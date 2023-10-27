@@ -1,6 +1,6 @@
 # ----- App Configuration -----
 DBType = "sqlite3"
-DBPath = "test.db"
+DBPath = "dev.db"
 
 lang = "en"
 listStyle = "tree"
@@ -20,7 +20,7 @@ DDL = ""
 
 [sqlite3]
 # app_command[0]
-"/" = "SELECT name FROM sqlite_master WHERE type='table';"
+"/" = "SELECT name FROM Board;"
 select = "SELECT "
 add = "INSERT INTO "
 edit = "UPDATE "
@@ -28,9 +28,12 @@ delete = "UPDATE " # change stauts to "deleted"
 wipe="DROP WHERE"
 
 # app_command[1]
-board = "({uid}, {name}, {status}).format(uid='', name='', status='live')"
-class = "({uid}, {name}, {usedBoard}, {status})"
-event = "({uid}, {name}, {dscrp}, {createdTime}, {belongBoard}, {classCreated}, {currentClas}, {status})"
+# board = "({uid}, {name}, {status}).format(uid='', name='', status='live')"
+current_board_id = 3
+# class = "({uid}, {name}, {usedBoard}, {status})"
+current_class_id = 0
+# event = "({uid}, {name}, {dscrp}, {createdTime}, {belongBoard}, {classCreated}, {currentClas}, {status})"
+current_event_id = 0
 
 # "/" -> " " in Stateful
 stucked = "Stucked "

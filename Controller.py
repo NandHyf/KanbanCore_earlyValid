@@ -7,9 +7,9 @@ class Client():
 
     def get_config():
         # [todo 4]
-        configs = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTime']
+        configs = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTimeZone']
         # rl == 'r'eturn 'l'ist
-        rl = Stateful.matchTomlKeys("config.toml", configs)
+        rl = Stateful.MatchTomlKeys("dev_config.toml", configs)
         
         global lang, listStyle, dbType, dbPath
         dbType = rl[0]
@@ -31,9 +31,10 @@ class Client():
     
 
     # [todo 0]
-    def SyntaxCheck():
+    # 前端只检查输入数量正确, 内容正确统一代回后端检查
+    def InputCheck(inputs):
         pass
-    
+              
 
     def TransitCommand():
         # do while or for (1)
@@ -42,11 +43,16 @@ class Client():
             # Input exception check
             
             # [todo 1]
-            # 直接在这check一下length
-            # Add DBType && Path
-            app_commands.append(dbPath)
-            app_commands.append(dbType)
-            Stateful.PackHandler(app_commands)
+            # Client.InputCheck(app_commands)
+            if len(app_commands) < 5:
+                # Add DBType && Path
+                app_commands.append(dbPath)
+                app_commands.append(dbType)
+                Stateful.PackHandler(app_commands)
+
+            elif len(app_commands) >= 5:
+                print(">5 error")
+                break
 
     # [todo 4]
     def start():
@@ -61,7 +67,7 @@ class Client():
         # ↑↑↑ test code here ↑↑↑
 
         # 2. Normalized Start Process
-        startState = Stateful.TransitHandler(['list', 'board', dbPath, dbType])
+        startState = Stateful.PackHandler(['/', dbPath, dbType])
         print(startState)
         Client.TransitCommand()
 
