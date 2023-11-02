@@ -1,7 +1,7 @@
 import Alt, WithSqlite
 import tomlkit
 
-# Placeholder for uid related
+# uid related
 
 # Toml Methods
 def GetTomlDoc(tomlName):
@@ -65,7 +65,7 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
 def Handler(app_commands):
     dbType = app_commands[-1]
     dbPath = app_commands[-2]
-    # 检查dbPath是否是dbType, 否的话报错并exit()
+    # [todo 3] 检查dbPath是否对应dbType, 否的话报错并exit()
 
     exec_commands = app_commands[0:-2]
 
@@ -90,6 +90,10 @@ def Handler(app_commands):
         exit()
 
 
+# ----- Docker related -----
+
+
+
 if __name__ == "__main__":
     
     a_c = ['/', 'test.db', 'sqlite3']
@@ -99,4 +103,3 @@ if __name__ == "__main__":
 
     # Operate_sqlite3("test.db", a_c1)
     Handler(a_c2)
-    
