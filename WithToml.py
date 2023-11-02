@@ -1,9 +1,4 @@
-import Alt, WithSqlite
-import tomlkit
-
-# Placeholder for uid related
-
-# Toml Methods
+# Toml
 def GetTomlDoc(tomlName):
     try:
         with open(tomlName, "rb") as t:
@@ -60,43 +55,3 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
 
         return rl
 
-
-# ----- Transit Command Handler -----
-def Handler(app_commands):
-    dbType = app_commands[-1]
-    dbPath = app_commands[-2]
-    # 检查dbPath是否是dbType, 否的话报错并exit()
-
-    exec_commands = app_commands[0:-2]
-
-    if dbType == "sqlite3":
-        WithSqlite.Regular(dbPath, exec_commands)
-
-
-    elif dbType == "csv":
-        pass
-
-    elif dbType == "mongodb":
-        pass
-
-    elif dbType == "toml":
-        pass
-
-    elif dbType == "md":
-        pass
-
-    else:
-        input("error 1: could not found correct Data Base")
-        exit()
-
-
-if __name__ == "__main__":
-    
-    a_c = ['/', 'test.db', 'sqlite3']
-    a_c1 = ['add', 'board', 'testBoardName', 'test.db', 'sqlite3']
-    a_c2 = ['edit', 'board', 't_boardName', 'to', 't_newBoardName', 'test.db', 'sqlite3']
-    e_c = ['add', 'board']
-
-    # Operate_sqlite3("test.db", a_c1)
-    Handler(a_c2)
-    
