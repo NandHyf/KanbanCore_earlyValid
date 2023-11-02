@@ -3,10 +3,9 @@
 # err 1: correct DB not found
 # -----
 import Stateful
-import datetime, base64
+import datetime, base64, uuid
 
-def Err(errCode, lang):
-    pass
+def Err(errCode, lang='en'):
     errText = ""
-    input("error ", errCode, errText)
+    input("err ", errCode, ": ",  errText)
     exit()

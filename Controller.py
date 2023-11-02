@@ -11,17 +11,18 @@ class Client():
         # rl == 'r'eturn 'l'ist
         rl = Stateful.MatchTomlKeys("dev_config.toml", configs)
         
-        global lang, listStyle, dbType, dbPath
+        global lang, listStyle, dbType, dbPath, displayTimeZone, currentPath
         dbType = rl[0]
         dbPath = rl[1]
         lang = rl[2]
         listStyle = rl[3]
         displayTimeZone = rl[4]
+        currentPath = ""
 
 
     # [todo 4]
     def get_help():
-        print(Stateful.matchTomlKey("clean_config.toml", lang, "command-help"))
+        print(Stateful.MatchTomlKey("clean_config.toml", lang, "command-help"))
 
 
     # [todo 3]
@@ -30,7 +31,7 @@ class Client():
         return(dt_now_UTC0)
     
 
-    # [todo 0]
+    # [todo 2]
     # 前端只检查输入数量正确, 内容正确统一代回后端检查
     def InputCheck(inputs):
         pass
@@ -45,29 +46,24 @@ class Client():
             # [todo 1]
             # Client.InputCheck(app_commands)
             if len(app_commands) < 5:
-                # Add DBType && Path
+                # Add CurrentPath && DBType && Path
+                app_commands.append(currentPath)
                 app_commands.append(dbPath)
                 app_commands.append(dbType)
-                Stateful.PackHandler(app_commands)
+
+                Stateful.Handler(app_commands)
 
             elif len(app_commands) >= 5:
-                print(">5 error")
-                break
+                print("app_commands >5 error")
+
 
     # [todo 4]
     def start():
         # 1. get config
         Client.get_config()
 
-        global currentPath
-        currentPath = " "
-        # ↓↓↓ test code here ↓↓↓
-
-
-        # ↑↑↑ test code here ↑↑↑
-
-        # 2. Normalized Start Process
-        startState = Stateful.PackHandler(['/', dbPath, dbType])
+        # 2.
+        startState = Stateful.Handler(['/', dbPath, dbType])
         print(startState)
         Client.TransitCommand()
 
