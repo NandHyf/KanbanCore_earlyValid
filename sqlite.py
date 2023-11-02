@@ -5,8 +5,17 @@ deType = "sqlite3"
 dbPath = "dev.db"
 
 
-def is_exist(tableName, columnName):
+def IsEixist(tableName, columnName):
     pass
+    sqls = ""
+    Operate_sqlite3()
+
+
+
+def BackPrevious():
+    pass
+    previousPath = ""
+    currentPath = ""
 
 
 # [todo 3]
