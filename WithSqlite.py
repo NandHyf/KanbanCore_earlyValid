@@ -55,14 +55,30 @@ def IsExist(exec_commands, returnBool=True):
 def Secondary_response():
     pass
 
-class KB():
-    pass
 
-class CL():
-    pass
+class Sqls():
+    objType = ""
+    def select():
+        # DISTINCT
+        sqls = "SELECT FROM {table}".format(table=tableName)
 
-class EV():
-    pass
+    def add():
+        pass
+
+    def delete():
+        pass
+
+    def edit():
+        pass
+
+    def move():
+        pass
+
+    def bp():
+        pass
+
+    def home():
+        pass
 
 
 # Regular Start
@@ -77,66 +93,10 @@ def Regular(dbPath, exec_commands):
         exec_flag = False
 
         if ie == True:
-            if exec_commands[0] == 'select':
-                sqls = "SELECT name FROM {table} WHERE name='{name}';".format(table=tableName, name=itemName)
-                exec_flag = True
-
-            elif exec_commands[0] == 'add':
-                print("err <Code>: existed")
-
-            elif exec_commands[0] == 'delete':
-                sqls = "UPDATE {table} SET status='deleted' WHERE name='{name}';".format(table=tableName, name=itemName)
-                exec_flag = True
-
-            elif exec_commands[0] == 'edit':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == 'move':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == '..':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == '/':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == 'wipe':
-                sqls = ""
-                exec_flag = True
+            pass
 
         elif ie == False:
-            if exec_commands[0] == 'select':
-                print("err <Code>: not exist")
-
-            elif exec_commands[0] == 'add':
-                sqls = "INSERT INTO {table} VALUES(null, '{name}', 'live')".format(table=tableName, name=itemName)
-                exec_flag = True
-
-            elif exec_commands[0] == 'delete':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == 'edit':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == 'move':
-                print("err <Code>: not exist")
-
-            elif exec_commands[0] == '..':
-                sqls = ""
-                exec_flag = True
-
-            elif exec_commands[0] == '/':
-                print("err <Code>: not exist")
-
-            elif exec_commands[0] == 'wipe':
-                sqls = ""
-                exec_flag = True
+            pass
 
         elif exec_flag == True:
             # 有个数据库锁定的异常待处理(Multi-user)
