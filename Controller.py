@@ -67,7 +67,7 @@ class Client():
         # ↑↑↑ test code here ↑↑↑
 
         # 2. Normalized Start Process
-        startState = Stateful.PackHandler(['/', dbPath, dbType])
+        startState = Stateful.Handler(['/', dbPath, dbType])
         print(startState)
         Client.TransitCommand()
 

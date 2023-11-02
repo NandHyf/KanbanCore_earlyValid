@@ -107,11 +107,13 @@ def Operate_sqlite3(dbPath, match_commands):
 
 
 # ----- Transit Command Handler -----
-def PackHandler(app_commands):
+def Handler(app_commands):
     dbType = app_commands[-1]
     dbPath = app_commands[-2]
 
     if dbType == "sqlite3":
+        # IsExist()
+        # Operated_sqlite3()
         return Operate_sqlite3(dbPath, app_commands)
 
     elif dbType == "csv":
