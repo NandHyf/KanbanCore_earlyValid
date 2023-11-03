@@ -56,23 +56,28 @@ def Secondary_response():
     pass
 
 
-class Sqls():
-    objType = ""
-    
-    def select():
-        # DISTINCT
-        sqls = "SELECT FROM {table}".format(table=tableName)
+class objBoard():
+    def __init__(self, boardName) -> None:
+        self.name = boardName
 
-    def add():
+    def select_board(self, aliveOnly=True):# 不太对劲, 应该在IsExist的时候就已经可以得到结果了
+        if aliveOnly == False:
+            sqls = "SELECT name FROM {boardName}".format(boardName=self.name)
+        elif aliveOnly == True:
+            sqls = "SELECT name FROM {boardName} WHERE status='alive';".format(boardName=self.name)
+
+        return sqls
+
+    def add_board():
+        sqls = "INSERT INTO"
+
+    def delete_board():
         pass
 
-    def delete():
+    def edit_board():
         pass
 
-    def edit():
-        pass
-
-    def move():
+    def move_board():
         pass
 
     def bp():
@@ -80,6 +85,14 @@ class Sqls():
 
     def home():
         pass
+
+
+class objClass():
+    pass
+
+
+class objevent():
+    pass
 
 
 # Regular Start
