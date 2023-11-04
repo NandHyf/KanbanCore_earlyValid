@@ -30,7 +30,6 @@ c3 = "eventId"
 c4 = "stuckedTime"
 c5 = "solvedTime"
 c6 = "status" # alive/deleted
-
 # ----- App Configuration -----
 DBType = "sqlite3"
 DBPath = "dev.db"

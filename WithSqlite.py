@@ -57,43 +57,91 @@ def Secondary_response():
 
 
 class objBoard():
-    def __init__(self, boardName) -> None:
+    def __init__(self, dbPath, previousPath, currentPath, boardName) -> None:
+        self.dp = dbPath
+        self.pp = previousPath
+        self.cp = currentPath
         self.name = boardName
 
     def select_board(self, aliveOnly=True):# 不太对劲, 应该在IsExist的时候就已经可以得到结果了
-        if aliveOnly == False:
-            sqls = "SELECT name FROM {boardName}".format(boardName=self.name)
-        elif aliveOnly == True:
-            sqls = "SELECT name FROM {boardName} WHERE status='alive';".format(boardName=self.name)
+        if aliveOnly == True:
+            sqls = "SELECT name FROM Board WHERE name='{name}' AND status='alive';".format(name=self.name)
+        elif aliveOnly == False:
+            sqls = "SELECT name FROM Board WHERE name='{name}';".format(name=self.name)
 
-        return sqls
+        Exec_one(self.dp, sqls)
+        # [todo 4]
+        # return sqls
 
-    def add_board():
-        sqls = "INSERT INTO"
+    def add_board(self):
+        sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
+        Exec_one(self.dp, sqls)
+        
 
-    def delete_board():
-        pass
+    def delete_board(self):
+        sqls = "UPDATE Board SET status='deleted' WHERE name='{name}';".format(name=self.name)
+        Exec_one(self.dp, sqls)
+        
 
     def edit_board():
-        pass
+        # 修改了Board之后关联的分类和事件也要变, 而且要先修改关系最后变board名称
+        # 1. 查找CL和EV里面和这个KB的关联
+        # 2. 修改关联的KB-name
+        # 3. 修改KB的name
+        sqls = ""
+        
 
     def move_board():
-        pass
-
-    def bp():
-        pass
-
-    def home():
-        pass
+        print("err <Code>: syntax error")
 
 
 class objClass():
-    pass
+    def __init__(self, dbPath, previousPath, currentPath, boardName) -> None:
+        self.dp = dbPath
+        self.pp = previousPath
+        self.cp = currentPath
+        self.name = boardName
+
+
+    def select_class(self, aliveOnly=True):# 不太对劲, 应该在IsExist的时候就已经可以得到结果了
+        if aliveOnly == True:
+            sqls = "SELECT name FROM Class WHERE name='{name}' AND status='alive';".format(name=self.name)
+        elif aliveOnly == False:
+            sqls = "SELECT name FROM Class WHERE name='{name}';".format(name=self.name)
+
+        Exec_one(self.dp, sqls)
+        # [todo 4]
+        # return sqls
+
+
+    def add_class(self):
+        sqls = "INSERT INTO Class VALUES(null, '{name}', 'alive');".format(name=self.name)
+        Exec_one(self.dp, sqls)
+        
+
+    def delete_class(self):
+        sqls = "UPDATE Class SET status='deleted' WHERE name='{name}';".format(name=self.name)
+        Exec_one(self.dp, sqls)
+        
+
+    def edit_class():
+        
+        sqls = ""
+        
+
+    def move_class():
+        pass
 
 
 class objevent():
     pass
 
+def bp():
+    pass
+
+def home(): # IE就能解决了好像
+    sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
+    Exec_one(dbPath, sqls)
 
 # Regular Start
 def Regular(dbPath, exec_commands):
