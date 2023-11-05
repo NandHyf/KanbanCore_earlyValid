@@ -1,4 +1,4 @@
-import sqlite3, datetime
+import sqlite3
 
 
 # [todo 0]
