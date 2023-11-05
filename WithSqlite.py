@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, datetime
 
 
 # [todo 0]
@@ -25,6 +25,7 @@ def Exec_one(dbPath, commands):
     return re
 
 
+# [todo 4]
 def Exec_many():
     pass
         
@@ -57,11 +58,14 @@ def Secondary_response():
 
 
 class objBoard():
-    def __init__(self, dbPath, previousPath, currentPath, boardName) -> None:
+    def __init__(self, dbPath, previousPath, currentPath, boardName, newBoardName) -> None:
         self.dp = dbPath
         self.pp = previousPath
         self.cp = currentPath
+
         self.name = boardName
+        self.newName = newBoardName
+
 
     def select_board(self, aliveOnly=True):# 不太对劲, 应该在IsExist的时候就已经可以得到结果了
         if aliveOnly == True:
@@ -69,9 +73,10 @@ class objBoard():
         elif aliveOnly == False:
             sqls = "SELECT name FROM Board WHERE name='{name}';".format(name=self.name)
 
-        Exec_one(self.dp, sqls)
+        reserve = Exec_one(self.dp, sqls)
         # [todo 4]
         # return sqls
+
 
     def add_board(self):
         sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
@@ -96,11 +101,13 @@ class objBoard():
 
 
 class objClass():
-    def __init__(self, dbPath, previousPath, currentPath, boardName) -> None:
+    def __init__(self, dbPath, previousPath, currentPath, className, newClName="") -> None:
         self.dp = dbPath
         self.pp = previousPath
         self.cp = currentPath
-        self.name = boardName
+
+        self.name = className
+        self.newName = newClName
 
 
     def select_class(self, aliveOnly=True):# 不太对劲, 应该在IsExist的时候就已经可以得到结果了
@@ -109,10 +116,8 @@ class objClass():
         elif aliveOnly == False:
             sqls = "SELECT name FROM Class WHERE name='{name}';".format(name=self.name)
 
-        Exec_one(self.dp, sqls)
-        # [todo 4]
-        # return sqls
-
+        reserve = Exec_one(self.dp, sqls)
+       
 
     def add_class(self):
         sqls = "INSERT INTO Class VALUES(null, '{name}', 'alive');".format(name=self.name)
@@ -122,22 +127,78 @@ class objClass():
     def delete_class(self):
         sqls = "UPDATE Class SET status='deleted' WHERE name='{name}';".format(name=self.name)
         Exec_one(self.dp, sqls)
+        # [todo 3] 关联的EV和KB待处理
         
 
-    def edit_class():
+    def edit_class(self):
+        sqls = "UPDATE Class SET name={newName} WHERE name='{name}';".format(newName=self.newName, name=self.name)
+        Exec_one(self.dp, sqls)
+
+
+    def move_class(self):
+        # Why would someone want to do that?
+        # cp[todo 4] or del ONLY: def copy_class():
+        print("err <Code>: syntax error")
+
+
+
+class objEvent():
+    def __init__(self, dbPath, previousPath, currentPath, eventName, newEventName, dscrp, newDscrp, classCreated, classCurrent) -> None:
+        self.dp = dbPath
+        self.pp = previousPath
+        self.cp = currentPath
+
+        self.name = eventName
+        self.newName = newEventName
+        self.dscrp = dscrp
+        self.nd = newDscrp
+        self.ccr = classCreated
+        self.ccu = classCurrent
         
-        sqls = ""
-        
-
-    def move_class():
-        pass
+    def select_event(self):
+        sqls = "SELECT * FROM Event WHERE name='{name}';".format(name=self.name)
+        reserve = Exec_one(self.dp, sqls)
 
 
-class objevent():
-    pass
+    def add_event(self):
+        sqls = "INSERT INTO Event VALUES(null, '{name}', '{dscrp}', '{creator}', datetime('now'), '{classCreated}', '{classCurrent}', 'alive');"
+        Exec_one(self.dp, sqls)
 
+
+    def delete_event(self):
+        sqls = "UPDATE Event SET status='deleted' WHERE name='{name}';".format(name=self.name)
+        Exec_one(self.dp, sqls)
+
+
+    def edit_event(self, target):
+        # newName
+        if target == "newName":
+            sqls = "UPDATE Event SET name='{newName}' WHERE name='{name}';".format(newName=self.newName, name=self.name)
+            # [todo 4] 更改之后自动跳转?
+
+        # newDscrp && appendDscrp
+        elif target == "newDscrp":
+            sqls = "UPDATE Event SET dscrp='{newDscrp}' WHERE name='{name}';".format(newDscrp=self.nd, name=self.name)
+            
+        elif target == "appendDscrp":
+            sqls = "SELECT dscrp FROM Event WHERE name='{name}'".format(name=self.name)
+            reserve = Exec_one(self.dp, sqls)
+            # some prosess
+            sqls = reserve + ""
+
+        Exec_one(self.dp, sqls)
+
+
+
+    def move_event(self):
+        sqls = "UPDATE Event SET classCurrent='{classCurrent}' WHERE name='{name}';".format(classCurrent=self.ccu, name=self.name)
+        Exec_one(self.dp, sqls)
+
+
+# [todo 3]
 def bp():
     pass
+
 
 def home(): # IE就能解决了好像
     sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
@@ -161,8 +222,9 @@ def Regular(dbPath, exec_commands):
             pass
 
         elif exec_flag == True:
+            pass
             # 有个数据库锁定的异常待处理(Multi-user)
-            Exec_one(dbPath, sqls)
+            # Exec_one(dbPath, sqls)
 
 if __name__ == "__main__":
 

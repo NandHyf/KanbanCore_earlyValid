@@ -1,20 +1,21 @@
 # ----- init Configuration -----
+# Just a better reference for dev.db, no functional use(yet)
 [Board]
 # VALUES(?, ?, ?, ...)
-c1_p-k = ""
+c1_p-k = "id INTEGER PRIMARY KEY ASC"
 c2 = "name"
 c1 = "status" # alive/deleted
 
 [Class]
 # VALUES(?, ?, ?, ...)
-c1_p-k = ""
+c1_p-k = "id INTEGER PRIMARY KEY ASC"
 c2 = "name"
 c3 = "usingBoard"
 c4 = "status" # alive/deleted
 
 [Event]
 # VALUES(?, ?, ?, ...)
-c1_p-k = ""
+c1_p-k = "id INTEGER PRIMARY KEY ASC"
 c2 = "name"
 c3 = "dscrp"
 c4 = "creator"
@@ -24,12 +25,15 @@ c7 = "classCurrent"
 c8 = "status" # alive/deleted
 
 [Stucked]
-c1_pk = ""
+# VALUES(?, ?, ?, ...)
+c1_pk = "id INTEGER PRIMARY KEY ASC"
 c2 = "boardId"
 c3 = "eventId"
 c4 = "stuckedTime"
 c5 = "solvedTime"
 c6 = "status" # alive/deleted
+
+
 # ----- App Configuration -----
 DBType = "sqlite3"
 DBPath = "dev.db"
@@ -37,3 +41,5 @@ DBPath = "dev.db"
 lang = "en"
 listStyle = "tree"
 displayTimeZone = "utc+8"
+
+
