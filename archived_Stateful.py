@@ -1,9 +1,9 @@
-import Alt
-import tomlkit, sqlite3
+import Alt, WithSqlite
+import tomlkit
 
 # uid related
 
-# ----- Toml Methods -----
+# Toml Methods
 def GetTomlDoc(tomlName):
     try:
         with open(tomlName, "rb") as t:
@@ -59,51 +59,47 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
                 pass
 
         return rl
-    
-
-# ----- Sqlite -----
-def Exec_one(dbPath, commands):
-    con = sqlite3.connect(dbPath)
-    cur = con.cursor()
-
-    cur.execute(commands)
-    con.commit()
-    re = cur.fetchall()
-    con.close()
-
-    return re
 
 
-def IsExist(exec_commands, returnBool=True):
-    tableName = str(exec_commands[1]).capitalize()
+# ----- Transit Command Handler -----
+def Handler(app_commands):
+    dbType = app_commands[-1]
+    dbPath = app_commands[-2]
+    # [todo 3] 检查dbPath是否对应dbType, 否的话报错并exit()
 
-    ItemName = str(exec_commands[2])
+    exec_commands = app_commands[0:-2]
 
-    sqls = "SELECT name FROM {table} WHERE name='{name}'".format(table=tableName, name=ItemName)
-    ie = Exec_one(dbPath, sqls)
+    if dbType == "sqlite3":
+        WithSqlite.Regular(dbPath, exec_commands)
 
-    if ie != [] and returnBool == False:
-        return ie
-    
-    elif ie != [] and returnBool == True:
-        return True
 
-    elif ie == []:
-        return False
-    
+    elif dbType == "csv":
+        pass
+
+    elif dbType == "mongodb":
+        pass
+
+    elif dbType == "toml":
+        pass
+
+    elif dbType == "md":
+        pass
+
     else:
-        # Alt.Err(errCode)
-        print("err <Code>: unexpected error in existence check")
+        input("error 1: could not found correct Data Base")
+        exit()
 
 
-class command():
-    pass
+# ----- Docker related -----
 
-class objBoard():
-    pass
 
-class objClass():
-    pass
 
-class objEvent():
-    pass
+if __name__ == "__main__":
+    
+    a_c = ['/', 'test.db', 'sqlite3']
+    a_c1 = ['add', 'board', 'testBoardName', 'test.db', 'sqlite3']
+    a_c2 = ['edit', 'board', 't_boardName', 'to', 't_newBoardName', 'test.db', 'sqlite3']
+    e_c = ['add', 'board']
+
+    # Operate_sqlite3("test.db", a_c1)
+    Handler(a_c2)

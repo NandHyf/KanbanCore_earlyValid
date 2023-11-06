@@ -1,20 +1,17 @@
-# ----- init Configuration -----
+# ----- DB Configuration -----
 # Just a better reference for dev.db, no functional use(yet)
 [Board]
-# VALUES(?, ?, ?, ...)
 c1_p-k = "id INTEGER PRIMARY KEY ASC"
 c2 = "name"
-c1 = "status" # alive/deleted
+c1 = "status"
 
 [Class]
-# VALUES(?, ?, ?, ...)
 c1_p-k = "id INTEGER PRIMARY KEY ASC"
 c2 = "name"
 c3 = "usingBoard"
-c4 = "status" # alive/deleted
+c4 = "status"
 
 [Event]
-# VALUES(?, ?, ?, ...)
 c1_p-k = "id INTEGER PRIMARY KEY ASC"
 c2 = "name"
 c3 = "dscrp"
@@ -22,16 +19,15 @@ c4 = "creator"
 c5 = "createdTime"
 c6 = "classCreated"
 c7 = "classCurrent"
-c8 = "status" # alive/deleted
+c8 = "status"
 
 [Stucked]
-# VALUES(?, ?, ?, ...)
 c1_pk = "id INTEGER PRIMARY KEY ASC"
 c2 = "boardId"
 c3 = "eventId"
 c4 = "stuckedTime"
 c5 = "solvedTime"
-c6 = "status" # alive/deleted
+c6 = "status"
 
 
 # ----- App Configuration -----
@@ -43,3 +39,6 @@ listStyle = "tree"
 displayTimeZone = "utc+8"
 
 
+# ----- note -----
+# set integer prime key: <columnName> INTEGER PRIMARY KEY ASC
+# status: alive/deleted

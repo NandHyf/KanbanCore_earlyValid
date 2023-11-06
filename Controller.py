@@ -2,7 +2,6 @@ import Alt, Stateful
 import datetime
     
 
-# 如果需要再封装class Board/KB_Class/Event的话就在这里
 class Client():
 
     def get_config():
@@ -85,7 +84,11 @@ class View:
     def Refresh():
         pass
 
-    
+
+# For ChatGLM3-6B
+class LLMCall():
+    pass
+
 
 if __name__ == "__main__":
     Client.start()
