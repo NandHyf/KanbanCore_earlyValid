@@ -121,6 +121,7 @@ class command():
         # insert
         # get VALUES(?, ?, ?, ...)
         # 
+        values = ""
         sqls = "INSERT INTO ;"
         # 
 
