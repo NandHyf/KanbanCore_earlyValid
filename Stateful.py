@@ -61,7 +61,7 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
         return rl
     
 
-# ----- Sqlite -----
+# ----- Sqlite Methods -----
 def Exec_one(dbPath, commands):
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
@@ -117,14 +117,12 @@ class command():
         return res
 
 
-    def add(self):
+    def add(self, values, addObj="board", addType="new"):
         # insert
-        # get VALUES(?, ?, ?, ...)
-        # 
-        values = ""
-        sqls = "INSERT INTO ;"
-        # 
-
+        # add board: insert into Board
+        # add class(className, usingBoard): 
+        # add event(className)        
+        pass
 
     def delete(self):
         sqls = "UPDATE {table} SET status='deleted' WHERE name='{name}';".format(table=self.table, name=self.name)
@@ -132,11 +130,27 @@ class command():
 
 
     def edit(self):
+        # edit boardName
+
+        # edit className
+
+        # edit eventName
+
+        # edit event dscrp
+
+        # edit event blabla
         pass
         
 
-    def move(self):
-        pass
+    def move(self, moveObj):
+        if moveObj == "KB":
+            pass
+        
+        elif moveObj == "CL":
+            pass
+        
+        elif moveObj == "EV":
+            pass
 
 
     def backPrevious(self):
