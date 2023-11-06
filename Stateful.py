@@ -97,7 +97,55 @@ def IsExist(exec_commands, returnBool=True):
 
 
 class command():
-    pass
+    def __init__(self, dbPath, tableName, columnName, newColumnName) -> None:
+        self.dp = dbPath
+
+        self.table = tableName
+        self.name = columnName
+        self.newName = newColumnName
+
+
+    def select(self, aliveOnly=True):
+        if aliveOnly == True:
+            sqls = "SELECT name FROM {table} WHERE name='{name}' AND status='alive';".format(table=self.table, name=self.name)
+        elif aliveOnly == False:
+            sqls = "SELECT name FROM {table} WHERE name='{name}';".format(table=self.table, name=self.name)
+
+        res = Exec_one(self.dp, sqls)
+
+        # 也许需要一个后处理res = [('a'),('b')]这样的格式问题
+        return res
+
+
+    def add(self):
+        # insert
+        # get VALUES(?, ?, ?, ...)
+        # 
+        sqls = "INSERT INTO ;"
+        # 
+
+
+    def delete(self):
+        sqls = "UPDATE {table} SET status='deleted' WHERE name='{name}';".format(table=self.table, name=self.name)
+        res = Exec_one(self.dp, sqls)
+
+
+    def edit(self):
+        pass
+        
+
+    def move(self):
+        pass
+
+
+    def backPrevious(self):
+        pass
+
+
+    def backHome(self):
+        sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
+        Exec_one(dbPath, sqls)
+
 
 class objBoard():
     pass
@@ -107,3 +155,11 @@ class objClass():
 
 class objEvent():
     pass
+
+
+def Handler():
+    pass
+
+
+if __name__ == "__main__":
+    dbPath = "dev.db"
