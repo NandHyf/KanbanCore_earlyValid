@@ -75,6 +75,7 @@ def Exec_one(dbPath, commands):
 
 
 def IsExist(exec_commands, returnBool=True):
+    # [todo 4] 这里面的.capitalize()后面需要根据config.toml里面的内容判断
     tableName = str(exec_commands[1]).capitalize()
 
     ItemName = str(exec_commands[2])
@@ -124,12 +125,15 @@ class command():
         # add event(className)        
         pass
 
+
     def delete(self):
         sqls = "UPDATE {table} SET status='deleted' WHERE name='{name}';".format(table=self.table, name=self.name)
         res = Exec_one(self.dp, sqls)
 
 
     def edit(self):
+        # 感觉应该调二级响应去做吧...
+
         # edit boardName
 
         # edit className
@@ -150,20 +154,22 @@ class command():
             pass
         
         elif moveObj == "EV":
-            pass
+            pass      
+        
 
+    def back(self, backType, backPath=""):
+        if backType == "home":
+            sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
 
-    def backPrevious(self):
-        pass
+        elif backType == "previous":
+            sqls = ""
 
-
-    def backHome(self):
-        sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
         Exec_one(dbPath, sqls)
 
 
-    def back(self, ):
-        pass
+# 把config里面的DB config写成对象?
+def buildObj():
+    pass
 
 class objBoard():
     pass
