@@ -162,6 +162,9 @@ class command():
         Exec_one(dbPath, sqls)
 
 
+    def back(self, ):
+        pass
+
 class objBoard():
     pass
 

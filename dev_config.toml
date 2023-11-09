@@ -38,6 +38,8 @@ lang = "en"
 listStyle = "tree"
 displayTimeZone = "utc+8"
 
+LLM_call = false
+
 
 # ----- note -----
 # set integer prime key: <columnName> INTEGER PRIMARY KEY ASC
