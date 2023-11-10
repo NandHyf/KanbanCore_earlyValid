@@ -57,7 +57,7 @@ class Client():
 
 
     # [todo 4]
-    def GenDB():
+    def GenDB():# Stateful里面还有一个一样的方法
         pass
         # 1. 先检查是否已经存在DB? y/n?
         # 2. 连接性检查（是否要切换到新建的DB）y/n?

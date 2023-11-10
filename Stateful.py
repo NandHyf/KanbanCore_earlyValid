@@ -123,16 +123,21 @@ def BuildObj():
     pass
 
 
-def GenModel():
+def GenModel():# Controller里面还有一个一样的方法
     # model IE?
     # over write?
     # exec
     pass
 
 
-class Command():
-    def __init__(self, dbPath, tableName, columnName, newColumnName) -> None:
+class Cursor():
+    def __init__(self, currentPath, previousPath, dbType, dbPath, tableName, columnName, newColumnName) -> None:
+        self.cp = currentPath
+        self.pp = previousPath
+
+        self.dt = dbType
         self.dp = dbPath
+
 
         self.table = tableName
         self.name = columnName
@@ -154,10 +159,10 @@ class Command():
     def add(self, addObj="board", addType="new"):
         # get values
         v1 = MatchTomlTable(self.table)
-        v2 = v1[1:-1]
+        
 
         # 
-        sqls = "INSERT INTO {table} VALUES({values})".format(table=self.table, values=values)
+        sqls = "INSERT INTO {table} VALUES({values})".format(table=self.table, values=)
         res = Exec_one(self.dp, sqls)
 
 
