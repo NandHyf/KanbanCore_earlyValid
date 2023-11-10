@@ -61,6 +61,16 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
         return rl
     
 
+def MatchTomlTable(tomlName, tableName, returnType="list"):
+    d = GetTomlDoc(tomlName).unwrap()
+
+    if returnType == "list":
+        return list(d.get(tableName).values())
+    
+    elif returnType == "dict":
+        return d
+    
+
 # ----- Sqlite Methods -----
 def Exec_one(dbPath, commands):
     con = sqlite3.connect(dbPath)
@@ -76,6 +86,7 @@ def Exec_one(dbPath, commands):
 
 def IsExist(exec_commands, returnBool=True):
     # [todo 4] 这里面的.capitalize()后面需要根据config.toml里面的内容判断
+    # 可能也不用, 因为KBCLEV的表名和本身并无关系
     tableName = str(exec_commands[1]).capitalize()
 
     ItemName = str(exec_commands[2])
@@ -95,9 +106,28 @@ def IsExist(exec_commands, returnBool=True):
     else:
         # Alt.Err(errCode)
         print("err <Code>: unexpected error in existence check")
+  
+
+class objBoard():
+    pass
+
+class objClass():
+    pass
+
+class objEvent():
+    pass
 
 
-class command():
+# 把config里面的DB config写成对象?
+def BuildObj():
+    pass
+
+
+def GenModel():
+    pass
+
+
+class Command():
     def __init__(self, dbPath, tableName, columnName, newColumnName) -> None:
         self.dp = dbPath
 
@@ -119,11 +149,11 @@ class command():
 
 
     def add(self, values, addObj="board", addType="new"):
-        # insert
-        # add board: insert into Board
-        # add class(className, usingBoard): 
-        # add event(className)        
-        pass
+        # get values
+        values = []
+        # 
+        sqls = "INSERT INTO {table} VALUES({values})".format(table=self.table, values=values)
+        res = Exec_one(self.dp, sqls)
 
 
     def delete(self):
@@ -165,20 +195,6 @@ class command():
             sqls = ""
 
         Exec_one(dbPath, sqls)
-
-
-# 把config里面的DB config写成对象?
-def buildObj():
-    pass
-
-class objBoard():
-    pass
-
-class objClass():
-    pass
-
-class objEvent():
-    pass
 
 
 def Handler():

@@ -10,5 +10,10 @@ def Err(errCode, lang='en'):
     input("err ", errCode, ": ",  errText)
     exit()
 
+
 def Warn():
+    pass
+
+
+def sec_response():
     pass
