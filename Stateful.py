@@ -124,6 +124,9 @@ def BuildObj():
 
 
 def GenModel():
+    # model IE?
+    # over write?
+    # exec
     pass
 
 
@@ -148,9 +151,11 @@ class Command():
         return res
 
 
-    def add(self, values, addObj="board", addType="new"):
+    def add(self, addObj="board", addType="new"):
         # get values
-        values = []
+        v1 = MatchTomlTable(self.table)
+        v2 = v1[1:-1]
+
         # 
         sqls = "INSERT INTO {table} VALUES({values})".format(table=self.table, values=values)
         res = Exec_one(self.dp, sqls)
@@ -178,7 +183,7 @@ class Command():
 
     def move(self, moveObj):
         if moveObj == "KB":
-            pass
+            print("err <Code>: syntax error")
         
         elif moveObj == "CL":
             pass
@@ -192,7 +197,7 @@ class Command():
             sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
 
         elif backType == "previous":
-            sqls = ""
+            sqls = "SELECT name FROM {table} WHERE name='{}'"
 
         Exec_one(dbPath, sqls)
 

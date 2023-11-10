@@ -16,3 +16,50 @@ CREATE TABLE Board(id INTEGER PRIMARY KEY AUTOINCREMENT, name, status)
 CREATE TABLE Class(id INTEGER PRIMARY KEY AUTOINCREMENT, name, usingBoard, status)
 CREATE TABLE Event(id INTEGER PRIMARY KEY AUTOINCREMENT, name, dscrp, creator, createdTime, classCreated, classCurrent, status)
 CREATE TABLE Stucked(id INTEGER PRIMARY KEY AUTOINCREMENT, boardId, eventId, stuckedTime, solvedTime, status)
+
+
+[type == board]
+/, /KB, /KB/CL, KB/CL/EV: add board <KB2> -> ok
+
+
+[type == class]
+/: add class <CL> -> err (功能上可行但逻辑上不允许)
+/: add class <CL> to <KB> -> ok
+
+/KB: add class <CL> -> ok
+/KB, /KB/CL, /KB/CL/EV: add class <CL> to <KB2>
+    KB2 ie -> ok
+    KB2 ie false, add KB2, add CL -> ok
+        sec: KB2 not ie, create/cancel?[y/n]
+
+
+[type == event]
+/: add event <EV> -> err
+/: add event <EV> to <KB> -> ok
+    sec: no class, class in KB, choose, input()
+
+/: add event <EV> to <KB>/<CL> -> ok
+
+/KB: add event <EV> -> ok
+/KB: add event <EV> to <KB2> -> ok
+    KB2 ie, sec: no class, class in KB, choose, input() -> ok
+    KB2 ne, add KB2, sec: no class, class in KB, choose, input() -> ok
+
+# maybe a safe/strick mode = true in config.toml
+/KB: add event <EV> to <CL> -> ok
+/KB: add event <EV> to <KB2>/<CL> -> ok
+/KB: add event <EV> to <KB>/<CL> -> ok
+/KB: add event <EV> to <KB>/<CL>/,  <KB>/<CL>/<EV> -> err
+
+
+/KB/CL: add event <EV> -> ok
+/KB/CL: add event <EV> to <CL2>
+    CL2 ie in KB, -> ok
+    CL2 ne in KB, -> err
+
+/KB/CL/EV: add event <EV> -> err
+/KB/CL/EV: add event <EV> to <KB>
+/KB/CL/EV: add event <EV> to <KB2>
+/KB/CL/EV: add event <EV> to <CL>
+/KB/CL/EV: add event <EV> to <CL2>
+/KB/CL/EV: add event <EV2> to <KB>/<CL>

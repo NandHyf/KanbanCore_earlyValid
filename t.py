@@ -11,15 +11,22 @@ def MatchTomlTable(tomlName, tableName, returnType="list"):
         return d
 
 
-def add():
-    values = []
+def add(args=[]):
+    table = "Class"
+    
+    v1 = MatchTomlTable(tomlName, 'Class')[1:]
+    
 
-    sqls = "INSERT INTO {table} VALUES({values})".format(table=self.table, values=values)
-    res = Stateful.Exec_one(dp, sqls)
+    
+
+    sqls = "INSERT INTO {table} VALUES({values})".format(table=table, values=sqls_v)
+    # res = Stateful.Exec_one(dp, sqls)
+    print(sqls)
 
 
 if __name__ == "__main__":
     tomlName = "dev_config.toml"
     dp = "dev.db"
-    res = MatchTomlTable(tomlName, "Board")
+    # res = MatchTomlTable(tomlName, "Board")
+    res = add()
     print(res)
