@@ -4,7 +4,7 @@ import tomlkit, sqlite3
 # uid related
 
 # ----- Toml Methods -----
-def GetTomlDoc(tomlName):
+def GetTomlDoc(tomlName:str):
     try:
         with open(tomlName, "rb") as t:
             doc = tomlkit.load(t)
@@ -20,7 +20,7 @@ def GetTomlDoc(tomlName):
         exit()
     
 
-def MatchTomlKey(tomlName, key, table=None) -> str:
+def MatchTomlKey(tomlName:str, key:str, table:str=None) -> str:
     doc = GetTomlDoc(tomlName)
 
     if table == None:
@@ -32,7 +32,7 @@ def MatchTomlKey(tomlName, key, table=None) -> str:
 
 
 # no differernt between ↑ MatchTomlKey() ↑ except receives and returns in list
-def MatchTomlKeys(tomlName, keys, table=None) -> list:
+def MatchTomlKeys(tomlName:str, keys:list, table:str=None) -> list:
     doc = GetTomlDoc(tomlName)
 
     if table == None:
@@ -61,7 +61,7 @@ def MatchTomlKeys(tomlName, keys, table=None) -> list:
         return rl
     
 
-def MatchTomlTable(tomlName, tableName, returnType="list"):
+def MatchTomlTable(tomlName:str, tableName:str, returnType:str="list"):
     d = GetTomlDoc(tomlName).unwrap()
 
     if returnType == "list":
@@ -72,19 +72,20 @@ def MatchTomlTable(tomlName, tableName, returnType="list"):
     
 
 # ----- Sqlite Methods -----
-def Exec_one(dbPath, commands):
+def Exec_one(dbPath:str, commands:list):
     con = sqlite3.connect(dbPath)
     cur = con.cursor()
 
     cur.execute(commands)
     con.commit()
     re = cur.fetchall()
+    cur.close()
     con.close()
 
     return re
 
 
-def IsExist(exec_commands, returnBool=True):
+def IsExist(exec_commands:list, returnBool:bool=True):
     # [todo 4] 这里面的.capitalize()后面需要根据config.toml里面的内容判断
     # 可能也不用, 因为KBCLEV的表名和本身并无关系
     tableName = str(exec_commands[1]).capitalize()
@@ -129,8 +130,8 @@ def GenModel():# Controller里面还有一个一样的方法
     # exec
     pass
 
-
-class Cursor():
+#      ↓ 'OC' == 'Operating Cursor'
+class OC():
     def __init__(self, currentPath, previousPath, dbType, dbPath, tableName, columnName, newColumnName) -> None:
         self.cp = currentPath
         self.pp = previousPath
@@ -156,13 +157,19 @@ class Cursor():
         return res
 
 
-    def add(self, addObj="board", addType="new"):
-        # get values
-        v1 = MatchTomlTable(self.table)
-        
+    def add(self, addType="board"):
+        if addType == "board":
+            sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
+    
+        elif addType == "class":
 
-        # 
-        sqls = "INSERT INTO {table} VALUES({values})".format(table=self.table, values=)
+            sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=self.name, usingBoard=self.pc)
+
+        elif addType == "event":
+
+            sqls = "INSERT INTO Event VALUES(null, '{name}', );"
+
+
         res = Exec_one(self.dp, sqls)
 
 

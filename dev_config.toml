@@ -37,7 +37,7 @@ c4 = "status"
 
 
 # ----- App Configuration -----
-SafeMode = false
+StrictMode = false
 LLM_callable = false
 
 DBType = "sqlite3"
@@ -53,4 +53,4 @@ DisplayTimeZone = "utc+8"
 # status: alive/deleted
 #                                           ↓ Don't foget to write the method(s) for it
 # ListStyle: tree/md_table/LLM_md_table/<customName>
-# [todo 4] SafeMode/StrickMode: 1. Have to be full length commands; 2. err when not exist
+# [todo 4] StrickMode: 1. Have to be full length commands; 2. err when not exist

@@ -10,23 +10,29 @@ def MatchTomlTable(tomlName, tableName, returnType="list"):
     elif returnType == "dict":
         return d
 
-
-def add(args=[]):
-    table = "Class"
+# [todo 4] rebuild
+def add(cp, addType, contents):
+    if addType == "board":
+        sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
+        
     
-    v1 = MatchTomlTable(tomlName, 'Class')[1:]
-    
+    elif addType == "class":
+        sqls = "INSERT INTO Class VALUES(null, '{name}', )"
 
-    
+    elif addType == "event":
+        pass
 
-    sqls = "INSERT INTO {table} VALUES({values})".format(table=table, values=sqls_v)
-    # res = Stateful.Exec_one(dp, sqls)
-    print(sqls)
+
+    sqls = ""
+
+
+    Stateful.Exec_one(dp, sqls)
 
 
 if __name__ == "__main__":
     tomlName = "dev_config.toml"
     dp = "dev.db"
     # res = MatchTomlTable(tomlName, "Board")
-    res = add()
-    print(res)
+    contents = []
+    cp = ""
+    res = add(cp, "class", )

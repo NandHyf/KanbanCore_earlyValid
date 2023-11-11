@@ -57,9 +57,31 @@ CREATE TABLE Stucked(id INTEGER PRIMARY KEY AUTOINCREMENT, boardId, eventId, stu
     CL2 ie in KB, -> ok
     CL2 ne in KB, -> err
 
-/KB/CL/EV: add event <EV> -> err
-/KB/CL/EV: add event <EV> to <KB>
-/KB/CL/EV: add event <EV> to <KB2>
-/KB/CL/EV: add event <EV> to <CL>
+/KB/CL/EV: add event <EV2> -> err
+/KB/CL/EV: add event <EV> to <KB> -> okz
+/KB/CL/EV: add event <EV> to <KB2> -> ok
+/KB/CL/EV: add event <EV> to <CL> -> ok
 /KB/CL/EV: add event <EV> to <CL2>
+    whereis CL2
 /KB/CL/EV: add event <EV2> to <KB>/<CL>
+
+/: any thing
+
+/KB:
+    KB -> ok
+    CL -> ok
+    EV -> ok
+
+/KB/CL:
+    KB -> ok
+    CL -> ok
+    EV -> ok
+
+/KB/CL/EV:
+    KB -> ok
+    CL -> ok
+    EV -> ok
+
+等等, 后端的add不需要检查这些啊?!
+
+add board <KB1>, <KB2>, <KB3>, <KB4>

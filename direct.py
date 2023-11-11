@@ -1,5 +1,5 @@
 import sqlite3
-
+import Stateful
 
 def Operate_sqlite3(dbPath, commands):
 
@@ -23,7 +23,13 @@ def Operate_sqlite3(dbPath, commands):
 
 
 if __name__ == "__main__":
-    while(1):
+    # while(1):
         # syi = input("sql: ").split()
-        sy_i = input("sql: ")
-        Operate_sqlite3("dev.db", sy_i)
+        # sy_i = input("sql: ")
+        # Operate_sqlite3("dev.db", sy_i)
+
+    data = [
+    ('null', 'CL2', 'KB2', 'alive')
+    ]
+
+    sqls = ""
