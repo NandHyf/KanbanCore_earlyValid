@@ -34,7 +34,7 @@ class Client():
     # 前端只检查输入数量正确, 内容正确统一代回后端检查
     def InputCheck(inputs):
         pass
-              
+
 
     def TransitCommand():
         # do while or for (1)

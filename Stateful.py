@@ -155,7 +155,7 @@ class OC():
         return res
 
 
-    def add(self, addType:str="board", addName:str="", after_to:str=""):
+    def add(self, addType:str="board", addName:str="none", after_to:str="none"):
         # Logic see also: /else/addBoardLogic.png
         if addType == "board":
             ie = IsExist("Board", addName)
@@ -174,11 +174,17 @@ class OC():
             if ie == True:
 
                 if after_to != "none":
-                    sqls = "SELECT usingBoard FROM Class WHERE name='{name}';".format(name=addName)
-                    # 'ub' == 'usingBoard'
-                    ub = Exec_one(self.dp, ub)
-                    ub = ub + after_to
-                    sqls = "UPDATE Class SET usingBoard='{usingBoard}' WHERE name='{name}';".format(usingBoard=ub, name=addName)
+                    res = IsExist("Board", after_to)
+                    
+                    if res == True:
+                        sqls = "SELECT usingBoard FROM Class WHERE name='{name}';".format(name=addName)
+                        # 'ub' == 'usingBoard'
+                        ub = Exec_one(self.dp, ub)
+                        ub = ub + after_to
+                        sqls = "UPDATE Class SET usingBoard='{usingBoard}' WHERE name='{name}';".format(usingBoard=ub, name=addName)
+
+                    elif res == False:
+                        print("err <Code>: syntax error")
                 
                 elif after_to == "none":
 
@@ -195,7 +201,13 @@ class OC():
             elif ie == False:
 
                 if after_to != "none":
-                   sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=addName, usingBoard=after_to)
+                    res = IsExist("Board", after_to)
+                    
+                    if res == True:
+                        sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=addName, usingBoard=after_to)
+
+                    elif res == False:
+                        print("err <Code>: syntax error")
                 
                 elif after_to == "none":
 
