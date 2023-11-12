@@ -20,22 +20,22 @@ def GetTomlDoc(tomlName:str):
         exit()
     
 
-def MatchTomlKey(tomlName:str, key:str, table:str=None) -> str:
+def MatchTomlKey(tomlName:str, key:str, table:str="none") -> str:
     doc = GetTomlDoc(tomlName)
 
-    if table == None:
+    if table == "none":
         return str(doc.item(key))
     
-    elif table != None:
+    elif table != "none":
         d = doc.unwrap()
         return str(d[table][key])
 
 
 # no differernt between ↑ MatchTomlKey() ↑ except receives and returns in list
-def MatchTomlKeys(tomlName:str, keys:list, table:str=None) -> list:
+def MatchTomlKeys(tomlName:str, keys:list, table:str="none") -> list:
     doc = GetTomlDoc(tomlName)
 
-    if table == None:
+    if table == "none":
         # rl == 'r'eturn 'l'ist
         rl = []
 
@@ -48,7 +48,7 @@ def MatchTomlKeys(tomlName:str, keys:list, table:str=None) -> list:
         return rl
     
 
-    elif table != None:
+    elif table != "none":
         rl = []
         d = doc.unwrap()
 
@@ -85,14 +85,12 @@ def Exec_one(dbPath:str, commands:list):
     return re
 
 
-def IsExist(exec_commands:list, returnBool:bool=True):
+def IsExist(tableName:str, itemName:str, returnBool:bool=True):
     # [todo 4] 这里面的.capitalize()后面需要根据config.toml里面的内容判断
     # 可能也不用, 因为KBCLEV的表名和本身并无关系
-    tableName = str(exec_commands[1]).capitalize()
+    tableName = tableName.capitalize()
 
-    ItemName = str(exec_commands[2])
-
-    sqls = "SELECT name FROM {table} WHERE name='{name}'".format(table=tableName, name=ItemName)
+    sqls = "SELECT name FROM {table} WHERE name='{name}'".format(table=tableName, name=itemName)
     ie = Exec_one(dbPath, sqls)
 
     if ie != [] and returnBool == False:
@@ -132,22 +130,22 @@ def GenModel():# Controller里面还有一个一样的方法
 
 #      ↓ 'OC' == 'Operating Cursor'
 class OC():
-    def __init__(self, currentPath, previousPath, dbType, dbPath, tableName, columnName, newColumnName) -> None:
+    def __init__(self, currentPath:list, previousPath:list, dbType:str, dbPath:str, tableName:str, columnName:str, newColumnName:str) -> None:
         self.cp = currentPath
         self.pp = previousPath
 
         self.dt = dbType
         self.dp = dbPath
 
-
         self.table = tableName
         self.name = columnName
         self.newName = newColumnName
 
 
-    def select(self, aliveOnly=True):
+    def select(self, aliveOnly:bool=True):# KAO, what about unclassified...
         if aliveOnly == True:
-            sqls = "SELECT name FROM {table} WHERE name='{name}' AND status='alive';".format(table=self.table, name=self.name)
+            # →                                                                                    ↓不对啊这样的话分不出来事件的分类了
+            sqls = "SELECT name FROM {table} WHERE name='{name}' AND status='alive' or status='unclassified';".format(table=self.table, name=self.name)
         elif aliveOnly == False:
             sqls = "SELECT name FROM {table} WHERE name='{name}';".format(table=self.table, name=self.name)
 
@@ -157,18 +155,37 @@ class OC():
         return res
 
 
-    def add(self, addType="board"):
+    def add(self, addType:str="board", addName:str="", after_to:str=""):
         if addType == "board":
-            sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
+            ie = IsExist("Board", addName)
+
+            if ie == True:
+                print("err <Code>: Board already exist")
+
+            elif ie == False:
+                sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
     
         elif addType == "class":
+            # 1. 检查cl存在
+            ie = IsExist("Class", addName)
 
-            sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=self.name, usingBoard=self.pc)
+            # 2. 有没有指定目标(after_to)
+            if ie == False:
+
+                if after_to == "" and len(self.cp) == 1:
+                    print("err <Code>: syntax error")
+
+                elif 
+                            
+                
+
+            elif ie == True:
+                pass
+            # 3. 没有指定目标的 情况下, 当前路径(dp)有没有可以输入的; 没有就err
 
         elif addType == "event":
-
-            sqls = "INSERT INTO Event VALUES(null, '{name}', );"
-
+            pass
+ 
 
         res = Exec_one(self.dp, sqls)
 
