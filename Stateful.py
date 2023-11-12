@@ -156,6 +156,7 @@ class OC():
 
 
     def add(self, addType:str="board", addName:str="", after_to:str=""):
+        # Logic see also: /else/addBoardLogic.png
         if addType == "board":
             ie = IsExist("Board", addName)
 
@@ -164,25 +165,49 @@ class OC():
 
             elif ie == False:
                 sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
-    
+
+
+        # Logic see also: /else/addClassLogic.png
         elif addType == "class":
-            # 1. 检查cl存在
             ie = IsExist("Class", addName)
 
-            # 2. 有没有指定目标(after_to)
-            if ie == False:
+            if ie == True:
 
-                if after_to == "" and len(self.cp) == 1:
-                    print("err <Code>: syntax error")
+                if after_to != "none":
+                    sqls = "SELECT usingBoard FROM Class WHERE name='{name}';".format(name=addName)
+                    # 'ub' == 'usingBoard'
+                    ub = Exec_one(self.dp, ub)
+                    ub = ub + after_to
+                    sqls = "UPDATE Class SET usingBoard='{usingBoard}' WHERE name='{name}';".format(usingBoard=ub, name=addName)
+                
+                elif after_to == "none":
 
-                elif 
-                            
+                    if len(self.cp) < 2:
+                        print("err <Code>: syntax error")
+
+                    elif len(self.cp) >= 2:
+                        sqls = "SELECT usingBoard FROM Class WHERE name='{name}';".format(name=addName)
+                        # 'ub' == 'usingBoard'
+                        ub = Exec_one(self.dp, ub)
+                        ub = ub + self.cp[1]
+                        sqls = "UPDATE Class SET usingBoard='{usingBoard}' WHERE name='{name}';".format(usingBoard=ub, name=addName)
+
+            elif ie == False:
+
+                if after_to != "none":
+                   sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=addName, usingBoard=after_to)
+                
+                elif after_to == "none":
+
+                    if len(self.cp) < 2:
+                        print("err <Code>: syntax error")
+
+                    elif len(self.cp) >= 2:
+                        ub = self.cp[1]
+                        sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=addName, usingBoard=ub)
                 
 
-            elif ie == True:
-                pass
-            # 3. 没有指定目标的 情况下, 当前路径(dp)有没有可以输入的; 没有就err
-
+        # Logic see also: /else/addEventLogic.png
         elif addType == "event":
             pass
  

@@ -48,3 +48,7 @@ DisplayTimeZone = "utc+8"
 #                                           ↓ Don't foget to write the method(s) for it
 # ListStyle: tree/md_table/LLM_md_table/<customName>
 # [todo 4] StrickMode: 1. Have to be full length commands; 2. err when not exist
+
+
+# Explanation of abbreviations
+# 
