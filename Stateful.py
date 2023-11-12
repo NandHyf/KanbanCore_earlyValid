@@ -223,7 +223,6 @@ class OC():
         elif addType == "event":
             pass
  
-
         res = Exec_one(self.dp, sqls)
 
 
