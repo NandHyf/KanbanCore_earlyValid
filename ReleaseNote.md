@@ -1,8 +1,15 @@
-[v 1.0]
+[Backlog]
+- Dart version
+- Support MongoDB
+- C# version
+- Export to .csv
 
 
-[v 2.0]
-1. 支持多重输入的命令结构
+[v2.0]
+- Multiple input
 
-[backlog]
-1. 数据库支持mogoDB
+[v1.1]
+- Export to .toml/.md/.txt
+
+[v1.0]
+- Basic functions

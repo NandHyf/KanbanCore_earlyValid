@@ -1,0 +1,36 @@
+# ----- DB Configuration -----
+# Just a better reference for dev.db, no functional use(yet)
+[KB]
+c1_pk = "id INTEGER PRIMARY KEY ASC"
+c2 = "type"
+c3 = "name"
+c4 = "dscrp"
+c5 = "creator"
+c6 = "createdTime"
+c7 = "classCreated"
+c8 = "classCurrent"
+c9 = "status"
+
+
+# ----- App Configuration -----
+StrictMode = false
+LLM_callable = false
+
+DBType = "sqlite3"
+DBPath = "dev.db"
+
+Lang = "en"
+ListStyle = "tree"
+DisplayTimeZone = "utc+8"
+
+
+# ----- Some Notes -----
+# Set integer prime key: <columnName> INTEGER PRIMARY KEY ASC
+# status: alive/deleted/unclassified(event only)
+#                                           ↓ Don't foget to write the method(s) for it
+# ListStyle: tree/md_table/LLM_md_table/<customName>
+# [todo 4] StrickMode: 1. Have to be full length commands; 2. err when not exist
+
+
+# Explanation of abbreviations
+# 
