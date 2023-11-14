@@ -143,128 +143,26 @@ class OC():
 
 
     def select(self, aliveOnly:bool=True):# KAO, what about unclassified...
-        if aliveOnly == True:
-            # →                                                                                    ↓不对啊这样的话分不出来事件的分类了
-            sqls = "SELECT name FROM {table} WHERE name='{name}' AND status='alive' or status='unclassified';".format(table=self.table, name=self.name)
-        elif aliveOnly == False:
-            sqls = "SELECT name FROM {table} WHERE name='{name}';".format(table=self.table, name=self.name)
-
-        res = Exec_one(self.dp, sqls)
-
-        # 也许需要一个后处理res = [('a'),('b')]这样的格式问题
-        return res
+       pass
 
 
     def add(self, addType:str="board", addName:str="none", after_to:str="none"):
-        # Logic see also: /else/addBoardLogic.png
-        if addType == "board":
-            ie = IsExist("Board", addName)
-
-            if ie == True:
-                print("err <Code>: Board already exist")
-
-            elif ie == False:
-                sqls = "INSERT INTO Board VALUES(null, '{name}', 'alive');".format(name=self.name)
-
-
-        # Logic see also: /else/addClassLogic.png
-        elif addType == "class":
-            ie = IsExist("Class", addName)
-
-            if ie == True:
-
-                if after_to != "none":
-                    res = IsExist("Board", after_to)
-                    
-                    if res == True:
-                        sqls = "SELECT usingBoard FROM Class WHERE name='{name}';".format(name=addName)
-                        # 'ub' == 'usingBoard'
-                        ub = Exec_one(self.dp, ub)
-                        ub = ub + after_to
-                        sqls = "UPDATE Class SET usingBoard='{usingBoard}' WHERE name='{name}';".format(usingBoard=ub, name=addName)
-
-                    elif res == False:
-                        print("err <Code>: syntax error")
-                
-                elif after_to == "none":
-
-                    if len(self.cp) < 2:
-                        print("err <Code>: syntax error")
-
-                    elif len(self.cp) >= 2:
-                        sqls = "SELECT usingBoard FROM Class WHERE name='{name}';".format(name=addName)
-                        # 'ub' == 'usingBoard'
-                        ub = Exec_one(self.dp, ub)
-                        ub = ub + self.cp[1]
-                        sqls = "UPDATE Class SET usingBoard='{usingBoard}' WHERE name='{name}';".format(usingBoard=ub, name=addName)
-
-            elif ie == False:
-
-                if after_to != "none":
-                    res = IsExist("Board", after_to)
-                    
-                    if res == True:
-                        sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=addName, usingBoard=after_to)
-
-                    elif res == False:
-                        print("err <Code>: syntax error")
-                
-                elif after_to == "none":
-
-                    if len(self.cp) < 2:
-                        print("err <Code>: syntax error")
-
-                    elif len(self.cp) >= 2:
-                        ub = self.cp[1]
-                        sqls = "INSERT INTO Class VALUES(null, '{name}', '{usingBoard}', 'alive');".format(name=addName, usingBoard=ub)
-                
-
-        # Logic see also: /else/addEventLogic.png
-        elif addType == "event":
-            pass
- 
-        res = Exec_one(self.dp, sqls)
+        pass
 
 
     def delete(self):
-        sqls = "UPDATE {table} SET status='deleted' WHERE name='{name}';".format(table=self.table, name=self.name)
-        res = Exec_one(self.dp, sqls)
-
+        pass
 
     def edit(self):
-        # 感觉应该调二级响应去做吧...
-
-        # edit boardName
-
-        # edit className
-
-        # edit eventName
-
-        # edit event dscrp
-
-        # edit event blabla
         pass
         
 
     def move(self, moveObj):
-        if moveObj == "KB":
-            print("err <Code>: syntax error")
-        
-        elif moveObj == "CL":
-            pass
-        
-        elif moveObj == "EV":
-            pass      
+        pass 
         
 
     def back(self, backType, backPath=""):
-        if backType == "home":
-            sqls = "SELECT name FROM sqlite_master WHERE type='table' AND name is NOT 'sqlite_sequence';"
-
-        elif backType == "previous":
-            sqls = "SELECT name FROM {table} WHERE name='{}'"
-
-        Exec_one(dbPath, sqls)
+        pass
 
 
 def Handler():
