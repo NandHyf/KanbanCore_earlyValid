@@ -1,6 +1,6 @@
 # ----- DB Configuration -----
 # Just a better reference for dev.db, no functional use(yet)
-[KB]
+[cdb]
 c1_pk = "id INTEGER PRIMARY KEY ASC"
 c2 = "type"
 c3 = "name"
