@@ -1,15 +1,24 @@
 # ----- DB Configuration -----
 # Just a better reference for dev.db, no functional use(yet)
-[cdb]
+[compact_main]
 c1_pk = "id INTEGER PRIMARY KEY ASC"
 c2 = "type"
 c3 = "name"
 c4 = "dscrp"
 c5 = "creator"
 c6 = "createdTime"
-c7 = "classCreated"
-c8 = "classCurrent"
-c9 = "status"
+c7 = "relatedBoard"
+c8 = "relatedClass"
+c9 = "alive"
+
+[log_action]
+c1_pk = "id INTEGER PRIMARY KEY ASC"
+c2 = "uid" # UNIQUE
+c3 = "commitTime"
+c4 = "type"
+c5 = "commitedAction"
+c6 = "operator"
+c7 = "state"
 
 
 # ----- App Configuration -----
@@ -30,6 +39,30 @@ DisplayTimeZone = "utc+8"
 #                                           ↓ Don't foget to write the method(s) for it
 # ListStyle: tree/md_table/LLM_md_table/<customName>
 # [todo 4] StrickMode: 1. Have to be full length commands; 2. err when not exist
+
+# CREATE TABLE "main" (
+# 	"id"	INTEGER NOT NULL,
+# 	"type"	TEXT NOT NULL,
+# 	"name"	TEXT NOT NULL,
+# 	"dscrp"	TEXT NOT NULL,
+# 	"creator"	TEXT NOT NULL,
+# 	"createdTime"	TEXT NOT NULL,
+# 	"relatedBoard"	TEXT NOT NULL,
+# 	"relatedClass"	TEXT NOT NULL,
+# 	"alive"	INTEGER NOT NULL,
+# 	PRIMARY KEY("id" AUTOINCREMENT)
+# );
+
+# ----- used sqls -----
+# INSERT INTO cdb VALUES(null, 'class', 'CL1', 'dscrp', 'n.HE', datetime('now'), 'KB1, KB2', '', 'alive');
+
+# SELECT name FROM cdb WHERE belongBoard like '%KB1%'
+# SELECT name, dscrp FROM cdb WHERE dscrp like '%KB1%'
+# SELECT name, dscrp FROM cdb WHERE dscrp like '%_%KB1%'
+
+# INSERT INTO cdb VALUES(null, 'class', 'CL2', '_usingBoard:KB1, KB2', 'n.HE', datetime('now'), '', '', 'alive');
+# UPDATE main SET relatedBoard='KB1, KB2' WHERE type='class' AND name='CL2'
+# SELECT name FROM main WHERE type='class' AND relatedBoard like '%KB2%'
 
 
 # Explanation of abbreviations

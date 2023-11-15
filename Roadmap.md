@@ -7,21 +7,25 @@
 # Requirement Backlog
 
 [Backlog]
-(list up -> down == requirements new -> old)
-- Dart version
-- Support MongoDB
-- C# version
-- Export to .csv
+(list up -> down == requirements old -> new)
+- Action log
 - Multiple input
+- C# version
+- Export to `.csv`
+- Search
+- Support `MongoDB`
+- Dart version
+
 
 # Future Versions(Roadmap)
 
 (list up -> down == versions new -> old)
 
 [v0.1.2]
-- Export to .toml/.md/.txt
+- Export to `.toml`/`.md`/`.txt`
 
 [v0.1.1]
+- Loop case support
 - Secondary response to some cases
 
 [v0.1]
