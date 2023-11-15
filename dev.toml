@@ -54,13 +54,13 @@ DisplayTimeZone = "utc+8"
 # );
 
 # ----- used sqls -----
-# INSERT INTO cdb VALUES(null, 'class', 'CL1', 'dscrp', 'n.HE', datetime('now'), 'KB1, KB2', '', 'alive');
+# INSERT INTO compact_main VALUES(null, 'class', 'CL1', 'dscrp', 'n.HE', datetime('now'), 'KB1, KB2', '', 'alive');
 
-# SELECT name FROM cdb WHERE belongBoard like '%KB1%'
-# SELECT name, dscrp FROM cdb WHERE dscrp like '%KB1%'
-# SELECT name, dscrp FROM cdb WHERE dscrp like '%_%KB1%'
+# SELECT name FROM compact_main WHERE belongBoard like '%KB1%'
+# SELECT name, dscrp FROM compact_main WHERE dscrp like '%KB1%'
+# SELECT name, dscrp FROM compact_main WHERE dscrp like '%_%KB1%'
 
-# INSERT INTO cdb VALUES(null, 'class', 'CL2', '_usingBoard:KB1, KB2', 'n.HE', datetime('now'), '', '', 'alive');
+# INSERT INTO compact_main VALUES(null, 'class', 'CL2', '_usingBoard:KB1, KB2', 'n.HE', datetime('now'), '', '', 'alive');
 # UPDATE main SET relatedBoard='KB1, KB2' WHERE type='class' AND name='CL2'
 # SELECT name FROM main WHERE type='class' AND relatedBoard like '%KB2%'
 
