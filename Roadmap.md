@@ -8,6 +8,7 @@
 
 [Backlog]
 (list up -> down == requirements old -> new)
+- Strict Mode
 - Action log
 - Multiple input
 - C# version
