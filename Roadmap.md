@@ -9,6 +9,7 @@
 [Backlog]
 (list up -> down == requirements old -> new)
 - Strict Mode
+- Template
 - Action log
 - Multiple input
 - C# version
