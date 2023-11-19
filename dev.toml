@@ -9,7 +9,7 @@ c5 = "creator"
 c6 = "createdTime"
 c7 = "relatedBoard"
 c8 = "relatedClass"
-c9 = "alive"
+c9 = "status"
 
 [log_action]
 c1_pk = "id INTEGER PRIMARY KEY ASC"
@@ -34,11 +34,17 @@ DisplayTimeZone = "utc+8"
 
 
 # ----- Some Notes -----
+# status
+#   -10 = deleted
+#   10 = alive
+
+
 # Set integer prime key: <columnName> INTEGER PRIMARY KEY ASC
 # status: alive/deleted/unclassified(event only)
 #                                           ↓ Don't foget to write the method(s) for it
 # ListStyle: tree/md_table/LLM_md_table/<customName>
 # [todo 4] StrickMode: 1. Have to be full length commands; 2. err when not exist
+
 
 # CREATE TABLE "main" (
 # 	"id"	INTEGER NOT NULL,
@@ -64,6 +70,9 @@ DisplayTimeZone = "utc+8"
 # UPDATE main SET relatedBoard='KB1, KB2' WHERE type='class' AND name='CL2'
 # SELECT name FROM main WHERE type='class' AND relatedBoard like '%KB2%'
 
+# delete class 3 combo:
+# UPDATE compact_main SET relatedBoard = replace(relatedBoard, 'KB2, ', '')  WHERE type='class' AND relatedBoard like '%KB2, %';
+# UPDATE compact_main SET relatedBoard = replace(relatedBoard, ', KB2', '')  WHERE type='class' AND relatedBoard like '%, KB2%';
+# UPDATE compact_main SET relatedBoard = replace(relatedBoard, 'KB2', '')  WHERE type='class' AND relatedBoard like '%KB2%';
 
 # Explanation of abbreviations
-# 
