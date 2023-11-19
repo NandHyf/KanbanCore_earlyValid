@@ -2,9 +2,6 @@ import Alt
 import tomlkit, sqlite3
 
 
-# ----- uid related -----
-
-
 # ----- Record_Main(DB record as obj) -----
 class RM():
     def __init__(self, type:str, name:str, dscrp:str, creator:str, relatedBoard:str, relatedClass:str, status:int) -> None:
