@@ -15,7 +15,6 @@
 - Export to `.csv`
 - Search
 - Support `MongoDB`
-- Dart version
 
 
 # Future Versions(Roadmap)

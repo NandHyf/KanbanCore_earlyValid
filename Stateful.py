@@ -114,7 +114,7 @@ def Exec_one(dbPath:str, commands:list):
     return re
 
 
-def IsExist(tableName:str, itemName:str, returnBool:bool=True):
+def IsExist(dbPath:str, tableName:str, itemName:str, returnBool:bool=True):
     # [todo 4] 这里面的.capitalize()后面需要根据config.toml里面的内容判断
     # 可能也不用, 因为KBCLEV的表名和本身并无关系
     tableName = tableName.capitalize()
@@ -134,13 +134,6 @@ def IsExist(tableName:str, itemName:str, returnBool:bool=True):
     else:
         # Alt.Err(errCode)
         print("err <Code>: unexpected error in existence check")
-
-
-def GenModel():# Controller里面还有一个一样的方法
-    # model IE?
-    # over write?
-    # exec
-    pass
 
 
 # ----- App commands to sqlite Methods-----
@@ -172,10 +165,17 @@ def export():
     pass
 
 
-# ----- Interactions(with other .py) -----
+def GenModel():
+    # model IE?
+    # over write?
+    # exec
+    pass
+
+
+# ----- Interactions Handler(with other .py) -----
 def Handler():
     pass
 
 
 if __name__ == "__main__":
-    dbPath = "dev.db"
+    pass

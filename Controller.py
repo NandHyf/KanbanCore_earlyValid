@@ -64,7 +64,7 @@ class Client():
 
 
     # [todo 4]
-    def start(LLM_server=False):
+    def start():
         # 0. init
         
         # 1. get config

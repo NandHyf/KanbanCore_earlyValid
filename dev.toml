@@ -23,7 +23,6 @@ c7 = "state"
 
 # ----- App Configuration -----
 StrictMode = false
-LLM_callable = false
 
 DBType = "sqlite3"
 DBPath = "dev.db"
@@ -32,20 +31,25 @@ Lang = "en"
 ListStyle = "tree"
 DisplayTimeZone = "utc+8"
 
+Start_as_LLM_server = false
+
 
 # ----- Some Notes -----
-# status
+# compact_main.status:
 #   -10 = deleted
-#   10 = alive
+#    10 = alive
 
+# log_action.state:
+#   -10 = committed failed
+#    10 = successfully committed
 
 # Set integer prime key: <columnName> INTEGER PRIMARY KEY ASC
 # status: alive/deleted/unclassified(event only)
 #                                           ↓ Don't foget to write the method(s) for it
 # ListStyle: tree/md_table/LLM_md_table/<customName>
-# [todo 4] StrickMode: 1. Have to be full length commands; 2. err when not exist
 
 
+# ----- used sqls -----
 # CREATE TABLE "main" (
 # 	"id"	INTEGER NOT NULL,
 # 	"type"	TEXT NOT NULL,
@@ -59,7 +63,6 @@ DisplayTimeZone = "utc+8"
 # 	PRIMARY KEY("id" AUTOINCREMENT)
 # );
 
-# ----- used sqls -----
 # INSERT INTO compact_main VALUES(null, 'class', 'CL1', 'dscrp', 'n.HE', datetime('now'), 'KB1, KB2', '', 'alive');
 
 # SELECT name FROM compact_main WHERE belongBoard like '%KB1%'
