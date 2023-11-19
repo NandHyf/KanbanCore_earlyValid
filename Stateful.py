@@ -1,7 +1,38 @@
 import Alt
 import tomlkit, sqlite3
 
-# uid related
+# ----- uid related -----
+
+
+# ----- Record_Main(DB record as obj) -----
+class RM():
+    def __init__(self, type:str, name:str, dscrp:str, creator:str, relatedBoard:str, relatedClass:str, status:int) -> None:
+        self.id = "null"
+        self.type = type
+        self.name = name
+        self.dscrp = dscrp
+        self.creator = creator
+        self.createdTime = "datetime('now')"
+        self.relatedBoard = relatedBoard
+        self.relatedClass = relatedClass
+        self.status = status
+
+
+# ----- Record_log_action(DB record as obj) -----
+class RLA():
+    pass
+
+
+# ----- Operating Cursor -----
+class OC():
+    def __init__(self, dbType:str, dbPath:str, currentPath:list, previousPath:list, targetPath:list) -> None:
+        self.dt = dbType
+        self.dp = dbPath
+        
+        self.cp = currentPath
+        self.pp = previousPath
+        self.tp = targetPath
+
 
 # ----- Toml Methods -----
 def GetTomlDoc(tomlName:str):
@@ -105,21 +136,6 @@ def IsExist(tableName:str, itemName:str, returnBool:bool=True):
     else:
         # Alt.Err(errCode)
         print("err <Code>: unexpected error in existence check")
-  
-
-class objBoard():
-    pass
-
-class objClass():
-    pass
-
-class objEvent():
-    pass
-
-
-# 把config里面的DB config写成对象?
-def BuildObj():
-    pass
 
 
 def GenModel():# Controller里面还有一个一样的方法
@@ -128,44 +144,33 @@ def GenModel():# Controller里面还有一个一样的方法
     # exec
     pass
 
-#      ↓ 'OC' == 'Operating Cursor'
-class OC():
-    def __init__(self, currentPath:list, previousPath:list, dbType:str, dbPath:str, tableName:str, columnName:str, newColumnName:str) -> None:
-        self.cp = currentPath
-        self.pp = previousPath
 
-        self.dt = dbType
-        self.dp = dbPath
-
-        self.table = tableName
-        self.name = columnName
-        self.newName = newColumnName
+# ----- App commands to sqlite Methods-----
+def select():
+    pass
 
 
-    def select(self, aliveOnly:bool=True):# KAO, what about unclassified...
-       pass
+def add():
+    pass
 
 
-    def add(self, addType:str="board", addName:str="none", after_to:str="none"):
-        pass
+def delete():
+    pass
 
 
-    def delete(self):
-        pass
+def edit():
+    pass
 
 
-    def edit(self):
-        pass
-        
-
-    def move(self, moveObj):
-        pass 
-        
-
-    def back(self, backType, backPath=""):
-        pass
+def move():
+    pass
 
 
+def back():
+    pass
+
+
+# ----- interacts(with other .py) -----
 def Handler():
     pass
 
