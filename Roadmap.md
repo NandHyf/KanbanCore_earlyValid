@@ -8,7 +8,8 @@
 
 [Backlog]
 (list up -> down == requirements old -> new)
-- command: cp
+- Records auto-generation(random)
+- App command: cp
 - Strict Mode
 - Template
 - Action log
