@@ -150,8 +150,8 @@ class RM():
         return sqls
 
 
-    def add(self, addTable:str="compact_main"):
-        sqls = "INSERT INTO {at} VALUES({a.id}, '{a.type}', '{a.name}', '{a.dscrp}', '{a.creator}', '{a.createdTime}', '{a.relatedBoard}', '{a.relatedClass}', {a.status});".format(at=addTable, a=self)
+    def add(self):
+        sqls = "INSERT INTO compact_main VALUES({a.id}, '{a.type}', '{a.name}', '{a.dscrp}', '{a.creator}', '{a.createdTime}', '{a.relatedBoard}', '{a.relatedClass}', {a.status});".format(a=self)
 
         return sqls
 
