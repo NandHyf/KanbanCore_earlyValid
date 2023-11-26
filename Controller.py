@@ -18,6 +18,9 @@ class Client():
         displayTimeZone = rl[4]
         currentPath = ""
 
+        global config_dict
+        config_dict = {}
+
 
     # [todo 4]
     def get_help():
