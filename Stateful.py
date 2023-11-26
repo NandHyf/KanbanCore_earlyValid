@@ -150,14 +150,16 @@ class RM():
         return sqls
 
 
-    def add(self):
-        sqls = "INSERT INTO compact_main VALUES({0.id}, '{0.type}', '{0.name}', '{0.dscrp}', '{0.creator}', '{0.createdTime}', '{0.relatedBoard}', '{0.relatedClass}', {0.status});".format(self)
+    def add(self, addColumn:str="compact_main"):
+        sqls = "INSERT INTO {ac} VALUES({a.id}, '{a.type}', '{a.name}', '{a.dscrp}', '{a.creator}', '{a.createdTime}', '{a.relatedBoard}', '{a.relatedClass}', {a.status});".format(ac=addColumn, a=self)
 
         return sqls
 
 
-    def delete(self):
-        pass
+    def delete(self): # 1. withStatus:int=10? 2. withConditions >= or > or <?
+        sqls = "UPDATE compact_main SET status=-10 WHERE type='{d.type}' AND name='{d.name}' AND relatedBoard='{d.relatedBoard}' AND relatedClass='{d.relatedClass}';".format(d=self)
+
+        return sqls
 
     def edit(self):
         pass

@@ -8,12 +8,12 @@
 
 [Backlog]
 (list up -> down == requirements old -> new)
-- Redirection Board to `Class.relatedBoard`
+- Action log
+- Redirection Board to `Class.relatedBoard`(if necessary)
 - Records randomly auto-generation(for running tests)
 - Add app command: `cp`
 - Strict Mode off support
 - Template
-- Action log
 - Export to `.csv`
 - Search
 - Loop case support
