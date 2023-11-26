@@ -156,7 +156,7 @@ class RM():
         return sqls
 
 
-    def delete(self): # 1. withStatus:int=10? 2. withConditions >= or > or <?
+    def delete(self): # 1. withStatus:int=10? 2. withStatement >= or > or <?
         sqls = "UPDATE compact_main SET status=-10 WHERE type='{d.type}' AND name='{d.name}' AND relatedBoard='{d.relatedBoard}' AND relatedClass='{d.relatedClass}';".format(d=self)
 
         return sqls
