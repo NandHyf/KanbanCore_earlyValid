@@ -150,8 +150,8 @@ class RM():
         return sqls
 
 
-    def add(self, addColumn:str="compact_main"):
-        sqls = "INSERT INTO {ac} VALUES({a.id}, '{a.type}', '{a.name}', '{a.dscrp}', '{a.creator}', '{a.createdTime}', '{a.relatedBoard}', '{a.relatedClass}', {a.status});".format(ac=addColumn, a=self)
+    def add(self, addTable:str="compact_main"):
+        sqls = "INSERT INTO {at} VALUES({a.id}, '{a.type}', '{a.name}', '{a.dscrp}', '{a.creator}', '{a.createdTime}', '{a.relatedBoard}', '{a.relatedClass}', {a.status});".format(at=addTable, a=self)
 
         return sqls
 
@@ -160,6 +160,7 @@ class RM():
         sqls = "UPDATE compact_main SET status=-10 WHERE type='{d.type}' AND name='{d.name}' AND relatedBoard='{d.relatedBoard}' AND relatedClass='{d.relatedClass}';".format(d=self)
 
         return sqls
+
 
     def edit(self):
         pass
