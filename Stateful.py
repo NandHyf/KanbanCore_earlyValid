@@ -8,17 +8,17 @@ oc = {
     "dt":str, 
     "dp":str,
 
-    "cp":str, 
-    "pp":str,
+    "cp":list, 
+    "pp":list,
 
     "next_move":str,
 
-    "tp":str, 
-    "tp_in":str, 
-    "tp_to":str, 
+    "tp":list, 
+    "tp_in":list, 
+    "tp_to":list, 
     "tp_attr":str
     }
-# thoughts:
+# some thoughts:
 # class oc():
 #   def get_oc(), def move_oc()
 

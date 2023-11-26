@@ -9,15 +9,16 @@
 [Backlog]
 (list up -> down == requirements old -> new)
 - Redirection Board to `Class.relatedBoard`
-- Records auto-generation(random)
-- App command: cp
-- Strict Mode
+- Records randomly auto-generation(for running tests)
+- Add app command: `cp`
+- Strict Mode off support
 - Template
 - Action log
-- Multiple input object
 - Export to `.csv`
 - Search
-- Support `MongoDB`
+- Loop case support
+- Multiple input(add event EV1 EV2 EV3)
+
 
 
 # Future Versions(Roadmap)
@@ -25,7 +26,6 @@
 (list up -> down == versions new -> old)
 
 [v0.1.2]
-- Loop case support
 - Secondary response to some cases
 
 [v0.1.1]
