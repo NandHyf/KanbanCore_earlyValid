@@ -1,35 +1,22 @@
+from Controller import kbc_config
 import Alt
 import tomlkit, sqlite3
 
 
-# ----- Record_main(DB record as obj) -----
-class RM():
-    def __init__(self, type:str, name:str, dscrp:str, creator:str, relatedBoard:str, relatedClass:str, status:int) -> None:
-        self.id = "null"
-        self.type = type
-        self.name = name
-        self.dscrp = dscrp
-        self.creator = creator
-        self.createdTime = "datetime('now')"
-        self.relatedBoard = relatedBoard
-        self.relatedClass = relatedClass
-        self.status = status
-
-
-# ----- Record_log_action(DB record as obj) -----
-class RLA():
-    pass
-
-
 # ----- Operating Cursor -----
-class OC():
-    def __init__(self, dbType:str, dbPath:str, currentPath:list, previousPath:list, targetPath:list) -> None:
-        self.dt = dbType
-        self.dp = dbPath
-        
-        self.cp = currentPath
-        self.pp = previousPath
-        self.tp = targetPath
+oc = {
+    "dt":str, 
+    "dp":str, 
+    "cp":str, 
+    "pp":str, 
+    "tp":str, 
+    "tp_in":str, 
+    "tp_to":str, 
+    "tp_attr":str
+    }
+# thoughts:
+# class oc():
+#   def get_oc(), def move_oc()
 
 
 # ----- Toml Methods -----
@@ -136,32 +123,44 @@ def IsExist(dbPath:str, tableName:str, itemName:str, returnBool:bool=True):
         print("err <Code>: unexpected error in existence check")
 
 
-# ----- App commands to sqlite Methods-----
-def select():
-    pass
+# ----- Record_main(DB record as a class) -----
+class RM():
+    def __init__(self, type:str, name:str, dscrp:str, creator:str, relatedBoard:str, relatedClass:str, status:int) -> None:
+        self.id = "null"
+        self.type = type
+        self.name = name
+        self.dscrp = dscrp
+        self.creator = creator
+        self.createdTime = "datetime('now')"
+        self.relatedBoard = relatedBoard
+        self.relatedClass = relatedClass
+        self.status = status
+
+    
+    def select():
+        pass
+
+    def add():
+        pass
+
+    def delete():
+        pass
+
+    def edit():
+        pass
+
+    def move():
+        pass
+
+    def back():
+        pass
+
+    def export():
+        pass
 
 
-def add():
-    pass
-
-
-def delete():
-    pass
-
-
-def edit():
-    pass
-
-
-def move():
-    pass
-
-
-def back():
-    pass
-
-
-def export():
+# ----- Record_log_action(DB record as a class) -----
+class RLA():
     pass
 
 

@@ -1,14 +1,29 @@
 import Alt, Stateful
 import datetime
+
+
+class kbc_config():
+    def __init__(self) -> None:
+        global configs
+        configs = {}
+
+    def get_config():
+        pass
+
+    def get_help():
+        pass
     
+    def rewrite_config():
+        pass
+
 
 class Client():
 
     def get_config():
         # [todo 4]
-        configs = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTimeZone']
+        c = ['DBType', 'DBPath', 'lang', 'listStyle', 'displayTimeZone']
         # rl == 'r'eturn 'l'ist
-        rl = Stateful.MatchTomlKeys("dev_config.toml", configs)
+        rl = Stateful.MatchTomlKeys("dev.toml", c)
         
         global lang, listStyle, dbType, dbPath, displayTimeZone, currentPath
         dbType = rl[0]
@@ -17,9 +32,6 @@ class Client():
         listStyle = rl[3]
         displayTimeZone = rl[4]
         currentPath = ""
-
-        global config_dict
-        config_dict = {}
 
 
     # [todo 4]
@@ -94,4 +106,6 @@ class LLMCall():
 
 
 if __name__ == "__main__":
-    Client.start()
+    # Client.start()
+    Stateful.oc["dt"] = "s"
+    

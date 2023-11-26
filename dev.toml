@@ -1,3 +1,16 @@
+# ----- App Configuration -----
+StrictMode = false
+
+DBType = "sqlite3"
+DBPath = "dev.db"
+
+Lang = "en"
+ListStyle = "tree"
+DisplayTimeZone = "utc+8"
+
+Start_as_LLM_server = false
+
+
 # ----- DB Configuration -----
 # Just a better reference for dev.db, no functional use(yet)
 [compact_main]
@@ -19,19 +32,6 @@ c4 = "type"
 c5 = "commitedAction"
 c6 = "operator"
 c7 = "state"
-
-
-# ----- App Configuration -----
-StrictMode = false
-
-DBType = "sqlite3"
-DBPath = "dev.db"
-
-Lang = "en"
-ListStyle = "tree"
-DisplayTimeZone = "utc+8"
-
-Start_as_LLM_server = false
 
 
 # ----- Some Notes -----
