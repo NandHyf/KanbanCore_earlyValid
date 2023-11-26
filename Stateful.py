@@ -1,4 +1,4 @@
-from Controller import kbc_config
+# from Controller import kbc_config
 import Alt
 import tomlkit, sqlite3
 
@@ -6,9 +6,13 @@ import tomlkit, sqlite3
 # ----- Operating Cursor -----
 oc = {
     "dt":str, 
-    "dp":str, 
+    "dp":str,
+
     "cp":str, 
-    "pp":str, 
+    "pp":str,
+
+    "next_move":str,
+
     "tp":str, 
     "tp_in":str, 
     "tp_to":str, 
@@ -125,7 +129,7 @@ def IsExist(dbPath:str, tableName:str, itemName:str, returnBool:bool=True):
 
 # ----- Record_main(DB record as a class) -----
 class RM():
-    def __init__(self, type:str, name:str, dscrp:str, creator:str, relatedBoard:str, relatedClass:str, status:int) -> None:
+    def __init__(self, type:str="", name:str="", dscrp:str="", creator:str="", relatedBoard:str="", relatedClass:str="", status:int=10) -> None:
         self.id = "null"
         self.type = type
         self.name = name
@@ -137,22 +141,31 @@ class RM():
         self.status = status
 
     
-    def select():
+    def select(self, selectColumn:str="name", aliveOnly:bool=True):
+        if aliveOnly == True:
+            sqls = "SELECT {sc} FROM compact_main WHERE type='{s.type}' AND name='{s.name}' AND realatedBoard='{s.relatedBoard}' AND relatedClass='{s.relatedClass}' AND status={s.status};".format(sc=selectColumn, s=self)
+        elif aliveOnly == False:
+            sqls = "SELECT {sc} FROM compact_main WHERE type='{s.type}' AND name='{s.name}' AND realatedBoard='{s.relatedBoard}' AND relatedClass='{s.relatedClass}';".format(sc=selectColumn, s=self)
+        
+        return sqls
+
+
+    def add(self):
+        sqls = "INSERT INTO compact_main VALUES({0.id}, '{0.type}', '{0.name}', '{0.dscrp}', '{0.creator}', '{0.createdTime}', '{0.relatedBoard}', '{0.relatedClass}', {0.status});".format(self)
+
+        return sqls
+
+
+    def delete(self):
         pass
 
-    def add():
+    def edit(self):
         pass
 
-    def delete():
+    def move(self):
         pass
 
-    def edit():
-        pass
-
-    def move():
-        pass
-
-    def back():
+    def back(self):
         pass
 
     def export():
@@ -177,4 +190,6 @@ def Handler():
 
 
 if __name__ == "__main__":
-    pass
+    asd = RM("board", "KB", "", "n.HE", "", "", )
+    print(asd.select())
+    input("hold: ")

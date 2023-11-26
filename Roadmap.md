@@ -8,13 +8,13 @@
 
 [Backlog]
 (list up -> down == requirements old -> new)
+- Redirection Board to `Class.relatedBoard`
 - Records auto-generation(random)
 - App command: cp
 - Strict Mode
 - Template
 - Action log
-- Multiple input
-- C# version
+- Multiple input object
 - Export to `.csv`
 - Search
 - Support `MongoDB`
@@ -25,14 +25,14 @@
 (list up -> down == versions new -> old)
 
 [v0.1.2]
-- Export to `.toml`/`.md`/`.txt`
-
-[v0.1.1]
 - Loop case support
 - Secondary response to some cases
 
+[v0.1.1]
+- Global commands
+
 [v0.1]
-- Basic functions
+- MVP
 
 # Released Versions
 
