@@ -1,5 +1,5 @@
 # ----- App Configuration -----
-StrictMode = false
+StrictMode = true
 
 DBType = "sqlite3"
 DBPath = "dev.db"

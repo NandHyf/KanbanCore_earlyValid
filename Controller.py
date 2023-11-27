@@ -101,8 +101,12 @@ class View:
 
 
 # For ChatGLM3-6B
-class LLMCall():
-    pass
+class LLM():
+    def call():
+        pass
+
+    def respond():
+        pass
 
 
 if __name__ == "__main__":
